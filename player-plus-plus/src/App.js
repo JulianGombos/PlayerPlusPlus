@@ -7,7 +7,9 @@ import ExercisesList from "./components/exercises-list.component";
 import EditExercise from "./components/edit-exercise.component";
 import CreateExercise from "./components/create-exercise.component";
 import CreateUser from "./components/create-user.component";
+import HomePage from './components/home-page.component';
 
+/*
 function App() {
   return (
     <Router>
@@ -20,6 +22,17 @@ function App() {
       <Route path="/user" component={CreateUser} />
       </div>
     </Router>
+  );
+}
+*/
+
+function App(){
+  return (
+    <HomePage />
+
+
+
+
   );
 }
 

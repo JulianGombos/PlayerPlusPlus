@@ -1,0 +1,87 @@
+@font-face {
+  font-family: "Suez_One";
+  src: url("./fonts/suezone.ttf");
+}
+
+.pageBackground {
+  position: absolute;
+  background-color: #141414;
+  height: 100%;
+  width: 100%;
+  margin-top: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.topBar {
+  position: absolute;
+  margin: 0%;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 95px;
+  background-color: #8015E8;
+  border-width: 5px;
+  border-color: black;
+  border-radius: 0px;
+}
+
+.circle {
+  position: relative;
+  width: 50px;
+  height: 50px;
+  background: white;
+  border-radius: 50%;
+  margin-bottom: 5px;
+}
+
+.topBarGrid {
+  display: grid;
+  min-height: 100px;
+  grid-template-columns: 75px 300px 200px; /*Add more columns for search bar and login elements*/
+  margin-left: 0.5%;
+  align-content: center;
+}
+
+.leftBar {
+  /*Probably need a grid class to arrange all the circle elements for followed games*/
+  position: absolute;
+  width: 65px;
+  height: 100%;
+  top: 96px;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: #323232;
+  border-width: 3px;
+  border-style: solid;
+  border-color: black;
+}
+
+.websiteNameButton {
+  position: absolute;
+  font-size: 250%;
+  font-family: Suez_One;
+  color: white;
+
+  text-decoration: none;
+}
+
+.allGamesButton {
+  position: absolute;
+  font-size: 22px;
+  font-family:Suez_One;
+  color:white;
+  text-decoration: none;
+  margin-top: 12px;
+  margin-left: 30px;
+}
+
+a:hover {
+  color: #D2ACF7;
+  text-decoration: none;
+}
