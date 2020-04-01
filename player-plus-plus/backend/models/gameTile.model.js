@@ -4,6 +4,7 @@ const Schema = mongoose.Schema;
 
 const gameTileSchema = new Schema({
   name: {type: String, required: true},
+  pageurl: {type: String, required: true}
 }, {
   timestamps: true
 });

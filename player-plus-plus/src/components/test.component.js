@@ -1,13 +1,17 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { BrowserRouter as Router, Route} from "react-router-dom";
+import { Link } from 'react-router-dom';
 import "./style-sheets/test.css";
 
 const GameName = props => (
   
-  <div className="square">
-    <h1 className="whiteText">{props.game.name}</h1>
-    <div className="gameTilePic"></div>
-  </div>
+  <Link to={props.game.pageurl}>
+    <div className="square">
+      <h1 className="whiteText">{props.game.name}</h1>
+      <div className="gameTilePic"></div>
+    </div>
+  </Link>
 )
 
 export default class TestPage extends Component{
@@ -28,26 +32,28 @@ export default class TestPage extends Component{
       })
   }
 
-  /* gameList(){
-    return this.state.games.map(currentGame =>{
-      return <GameName game={currentGame} key={currentGame._id} />
-    })
-  } */
-
   gameList(){
     return this.state.games.map(currentGame =>{
       return <GameName game={currentGame} key={currentGame._id} />
     })
   }
 
+  /* setRoutes(){
+    return this.state.games.map(currentGame => {
+      return <Route path={currentGame.pageurl} component={} />
+    })
+  } */
+
   render() {
     return(
-      <div className="page">
-        <div className="gameTileGrid"> {/*This gameTileGrid goes into another grid that organizes all the elements on this page */}
-          <h1 className="headingText">Featured Games</h1>
-          {this.gameList()}
+      <Router>
+        <div className="page">
+          <div className="gameTileGrid"> {/*This gameTileGrid goes into another grid that organizes all the elements on this page */}
+            <h1 className="headingText">Featured Games</h1>
+            {this.gameList()}
+          </div>
         </div>
-      </div>
+      </Router>
     );
   }
 }

@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Route} from "react-router-dom";
 import HomePage from './components/home-page.component';
 import TestPage from './components/test.component';
 import Navbar from './components/navbar.component';
+import MinecraftPage from './components/minecraft-page.component'
 
 /*
 function App() {
@@ -29,6 +30,7 @@ function App(){
     <Route path="/" component={Navbar} />
     {/* <Route path="/homepage" component={HomePage} /> */}
     <Route path="/testpage" component={TestPage} />
+    <Route path="/minecraft" component={MinecraftPage} />
     </Router> 
   );
 }

@@ -9,8 +9,9 @@ router.route('/').get((req, res) =>{
 
 router.route('/add').post((req, res) => {
   const name = req.body.name;
+  const pageurl = req.body.pageurl;
 
-  const newGameTile = new GameTile({name});
+  const newGameTile = new GameTile({name, pageurl});
 
   newGameTile.save()
     .then(() => res.json('Game Tile added!'))
