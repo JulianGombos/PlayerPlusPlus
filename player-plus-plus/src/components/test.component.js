@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import "./style-sheets/test.css";
 
 const GameName = props => (
-  <tr>
-    <td>{props.game.name}</td>
-  </tr>
+  
+  <div className="square">
+    <h1 className="whiteText">{props.game.name}</h1>
+    <div className="gameTilePic"></div>
+  </div>
 )
 
 export default class TestPage extends Component{
@@ -25,15 +28,26 @@ export default class TestPage extends Component{
       })
   }
 
+  /* gameList(){
+    return this.state.games.map(currentGame =>{
+      return <GameName game={currentGame} key={currentGame._id} />
+    })
+  } */
+
   gameList(){
     return this.state.games.map(currentGame =>{
-      return <GameName game={currentGame} key={currentGame._id}/>
+      return <GameName game={currentGame} key={currentGame._id} />
     })
   }
 
   render() {
     return(
-    <h1>Games: {this.gameList()}</h1>
+      <div className="page">
+        <div className="gameTileGrid"> {/*This gameTileGrid goes into another grid that organizes all the elements on this page */}
+          <h1 className="headingText">Featured Games</h1>
+          {this.gameList()}
+        </div>
+      </div>
     );
   }
 }

@@ -27,9 +27,9 @@ function App(){
   return (
     <Router>
     <Route path="/" component={Navbar} />
-    <Route path="/homepage" component={HomePage} />
+    {/* <Route path="/homepage" component={HomePage} /> */}
     <Route path="/testpage" component={TestPage} />
-    </Router>
+    </Router> 
   );
 }
 
