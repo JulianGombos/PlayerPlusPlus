@@ -11,7 +11,7 @@ export default class Navbar extends Component{
           <div className = "topBarGrid">
             <div className = "circle"></div>
             <div><Link to='/' className='websiteNameButton'>Website Name</Link></div>
-            <div><Link to='/testpage' className='allGamesButton'>All Games</Link></div>
+            <div><Link to='/allgames' className='allGamesButton'>All Games</Link></div>
           </div>
         </div>
         <div className="leftBar"></div>
