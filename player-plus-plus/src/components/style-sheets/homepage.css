@@ -7,7 +7,7 @@
 .square {
   height: 330px;
   width: 330px;
-  background: url(./pics/minecraft.jpg) 50% 50% no-repeat;
+  background: url(./pics/minecraft.jpg) 50% 40%/150% 99% no-repeat; /*These image settings are set for minecraft image specifically*/
   border-radius: 15px;
   border-style: solid;
   border-width: 5px;
