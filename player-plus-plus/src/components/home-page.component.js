@@ -46,8 +46,6 @@ export default class TestPage extends Component{
     })
   } */
 
-
-
   render() {
     return(
       <div>
