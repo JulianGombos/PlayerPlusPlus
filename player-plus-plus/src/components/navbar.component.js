@@ -1,7 +1,26 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import "./style-sheets/navbar.css";
 
-export default class Navbar extends Component {
+export default class Navbar extends Component{
+
+  render(){
+    return(
+      <div className="pageBackground">
+        <div className = "topBar">
+          <div className = "topBarGrid">
+            <div className = "circle"></div>
+            <div><Link to='/' className='websiteNameButton'>Website Name</Link></div>
+            <div><Link to='/allgames' className='allGamesButton'>All Games</Link></div>
+          </div>
+        </div>
+        <div className="leftBar"></div>
+      </div>
+    );
+  }
+}
+
+/* export default class Navbar extends Component {
 
   render() {
     return (
@@ -23,4 +42,4 @@ export default class Navbar extends Component {
       </nav>
     );
   }
-}
+} */

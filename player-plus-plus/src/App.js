@@ -1,13 +1,13 @@
 import React from 'react';
 import "bootstrap/dist/css/bootstrap.min.css";
-import { BrowserRouter as Router, Route} from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch} from "react-router-dom";
 
-import Navbar from "./components/navbar.component"
-import ExercisesList from "./components/exercises-list.component";
-import EditExercise from "./components/edit-exercise.component";
-import CreateExercise from "./components/create-exercise.component";
-import CreateUser from "./components/create-user.component";
+import HomePage from './components/home-page.component';
+//import AllGames from './components/all-games';
+import Navbar from './components/navbar.component';
+import MinecraftPage from './components/minecraft-page.component'
 
+/*
 function App() {
   return (
     <Router>
@@ -19,6 +19,18 @@ function App() {
       <Route path="/create" component={CreateExercise} />
       <Route path="/user" component={CreateUser} />
       </div>
+    </Router>
+  );
+}
+*/
+
+function App(){
+  return (
+    <Router>
+    <Route path="/" component={HomePage} />
+    {/* <Route path="/homepage" component={HomePage} /> */}
+    {/* <Route path="/allgames" component={AllGames} /> */}
+    <Route path="/minecraft" component={MinecraftPage} />
     </Router>
   );
 }
