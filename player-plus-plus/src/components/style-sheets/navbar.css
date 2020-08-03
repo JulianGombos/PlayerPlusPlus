@@ -6,8 +6,8 @@
 .pageBackground {
   position: absolute;
   background-color: #141414;
-  height: 100%;
   width: 100%;
+  height: 1000px;
   margin-top: 0;
   top: 0;
   right: 0;

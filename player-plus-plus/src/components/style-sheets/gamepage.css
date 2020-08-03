@@ -1,0 +1,42 @@
+.page {
+  position: absolute;
+  top: 110px;
+  left: 80px;
+}
+
+.pageGrid {
+  display: grid;
+  grid-template-columns: 600px 700px 500px;
+  grid-template-rows: 1000px;
+  align-items: left;
+}
+
+.gameTitle {
+  font-size: 65px;
+  color: white;
+  text-align: center;
+}
+
+.leftColumn {
+  
+}
+
+.middleColumn {
+  background-color: #8015E8;
+}
+
+.popularPosts {
+  background-color: #262525;
+  margin-top: 15%;
+  width: 80%;
+  height: 40%;
+  border-radius: 15px;
+}
+
+.popularPosters {
+  background-color: #262525;
+  margin-top: 5%;
+  width: 80%;
+  height: 40%;
+  border-radius: 15px;
+}

@@ -8,7 +8,7 @@ import NavBar from "./navbar.component";
 const GameName = props => (
 
   <Link to={{pathname:'/game', id: props.game._id}}>
-    <div style={props.gameStyle}>
+    <div style={props.gameTileStyle}>
       <h1 className="whiteText">{props.game.name}</h1>
       <div className="gameTilePic"></div>
     </div>
@@ -35,7 +35,7 @@ export default class TestPage extends Component{
 
   gameList(){
     return this.state.games.map(currentGame =>{
-      var gameTileStyle = {height: 230 + 'px', width: 230 + 'px', background: 'url(' + './style-sheets/pics/MinecraftTilePic.png' + ')', borderRadius: 15}
+      var gameTileStyle = {height: '230px', width: '230px', backgroundImage: 'url(' + './style-sheets/pics/MinecraftTilePic.png' + ')', borderRadius: 15};
       return <GameName game={currentGame} gameStyle={gameTileStyle} key={currentGame._id} />
     })
   }
