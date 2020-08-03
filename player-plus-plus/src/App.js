@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import HomePage from './components/home-page.component';
 //import AllGames from './components/all-games';
 import Navbar from './components/navbar.component';
-import MinecraftPage from './components/minecraft-page.component'
+import GamePage from './components/game-page.component';
 
 /*
 function App() {
@@ -30,7 +30,7 @@ function App(){
     <Route path="/" component={HomePage} />
     {/* <Route path="/homepage" component={HomePage} /> */}
     {/* <Route path="/allgames" component={AllGames} /> */}
-    <Route path="/minecraft" component={MinecraftPage} />
+    <Route path="/game" component={GamePage} />
     </Router>
   );
 }

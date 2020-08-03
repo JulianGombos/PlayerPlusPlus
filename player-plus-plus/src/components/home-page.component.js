@@ -8,7 +8,7 @@ import NavBar from "./navbar.component";
 
 const GameName = props => (
   
-  <Link to={props.game.pageurl}>
+  <Link to={{pathname:'/game', id: props.game._id}}>
     <div className="square">
       <h1 className="whiteText">{props.game.name}</h1>
       <div className="gameTilePic"></div>
@@ -24,7 +24,7 @@ export default class TestPage extends Component{
   }
 
   componentDidMount() {
-    axios.get('http://localhost:5000/gametiles/')
+    axios.get('http://localhost:5000/games/')
       .then(res => {
         console.log(res.data);
         this.setState({games: res.data})
@@ -39,12 +39,6 @@ export default class TestPage extends Component{
       return <GameName game={currentGame} key={currentGame._id} />
     })
   }
-
-  /* setRoutes(){
-    return this.state.games.map(currentGame => {
-      return <Route path={currentGame.pageurl} component={} />
-    })
-  } */
 
   render() {
     return(
