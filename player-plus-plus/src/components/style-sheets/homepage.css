@@ -5,13 +5,10 @@
 }
 
 .square {
-  height: 330px;
-  width: 330px;
-  background: url(./pics/minecraft.jpg) 50% 40%/150% 99% no-repeat; /*These image settings are set for minecraft image specifically*/
+  height: 230px;
+  width: 230px;
+  background: url(./pics/MinecraftTilePic.png);
   border-radius: 15px;
-  border-style: solid;
-  border-width: 5px;
-  border-color: black;
 }
 
 .square a:hover {
@@ -21,8 +18,8 @@
 
 .gameTileGrid {
   display: grid;
-  grid-template-columns: 350px 350px 350px;
-  grid-template-rows: 50px 350px 350px;
+  grid-template-columns: 250px 250px 250px;
+  grid-template-rows: 50px 250px 250px;
   align-items: center;
   justify-items: center;
 }

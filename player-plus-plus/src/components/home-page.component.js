@@ -3,13 +3,12 @@ import axios from 'axios';
 import { BrowserRouter as Router, Route} from "react-router-dom";
 import { Link } from 'react-router-dom';
 import "./style-sheets/homepage.css";
-
 import NavBar from "./navbar.component";
 
 const GameName = props => (
-  
+
   <Link to={{pathname:'/game', id: props.game._id}}>
-    <div className="square">
+    <div style={props.gameStyle}>
       <h1 className="whiteText">{props.game.name}</h1>
       <div className="gameTilePic"></div>
     </div>
@@ -30,13 +29,14 @@ export default class TestPage extends Component{
         this.setState({games: res.data})
       })
       .catch((error) => {
-        console.Console.log(error);
+        console.log(error);
       })
   }
 
   gameList(){
     return this.state.games.map(currentGame =>{
-      return <GameName game={currentGame} key={currentGame._id} />
+      var gameTileStyle = {height: 230 + 'px', width: 230 + 'px', background: 'url(' + './style-sheets/pics/MinecraftTilePic.png' + ')', borderRadius: 15}
+      return <GameName game={currentGame} gameStyle={gameTileStyle} key={currentGame._id} />
     })
   }
 
