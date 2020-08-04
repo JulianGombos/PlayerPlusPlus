@@ -1,3 +1,8 @@
+@font-face {
+  font-family: "Suez_One";
+  src: url("./fonts/suezone.ttf");
+}
+
 .page {
   position: absolute;
   top: 110px;
@@ -13,8 +18,8 @@
 
 .gameTitle {
   font-size: 65px;
+  font-family: Suez_One;
   color: white;
-  text-align: center;
 }
 
 .leftColumn {
@@ -22,11 +27,14 @@
 }
 
 .middleColumn {
-  background-color: #8015E8;
+  display: flex;
+  flex-direction: column;
 }
 
 .popularPosts {
   background-color: #262525;
+  font-family: Suez_One;
+  font-size: 35px;
   margin-top: 15%;
   width: 80%;
   height: 40%;
@@ -35,6 +43,8 @@
 
 .popularPosters {
   background-color: #262525;
+  font-family: Suez_One;
+  font-size: 35px;
   margin-top: 5%;
   width: 80%;
   height: 40%;

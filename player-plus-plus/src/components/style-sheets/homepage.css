@@ -1,3 +1,8 @@
+@font-face {
+  font-family: "Suez_One";
+  src: url("./fonts/suezone.ttf");
+}
+
 .page {
   position: absolute;
   top: 110px;
@@ -36,5 +41,6 @@
 .headingText{
   color: #8015E8;
   grid-column: 1/4;
+  font-family: Suez_One;
   justify-self: start;
 }

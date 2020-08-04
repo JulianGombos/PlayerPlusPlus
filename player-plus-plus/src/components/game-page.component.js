@@ -35,10 +35,10 @@ export default class TestPage extends Component{
                 {this.state.game.name}
               </div>
               <div className="popularPosts">
-                <h1 style={{color: 'white'}}>Popular Posts</h1>
+                <p style={{color: 'white', marginLeft: '10px'}}>Popular Posts</p>
               </div>
               <div className="popularPosters">
-                <h1 style={{color: 'white'}}>Popular Posters</h1>
+                <p style={{color: 'white', marginLeft: '10px'}}>Popular Posters</p>
               </div>
             </div>
             <div className="middleColumn">
