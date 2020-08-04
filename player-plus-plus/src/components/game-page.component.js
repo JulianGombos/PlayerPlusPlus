@@ -14,7 +14,7 @@ export default class TestPage extends Component{
   }
 
   componentDidMount() {
-    axios.get('http://localhost:5000/games/' + this.props.location.id)
+    axios.get('/games/' + this.props.location.id)
       .then(res => {
         console.log(res.data);
         this.setState({game: res.data})
