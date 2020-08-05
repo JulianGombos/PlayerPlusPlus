@@ -26,14 +26,12 @@ connection.once('open', () => {
   console.log("MongoDB database connection established successfully");
 })
 
-const gameTilesRouter = require('./Routes/gameTile');
 const gameRouter = require('./Routes/game');
 const users = require("./Routes/users");
 
 app.use(passport.initialize());
 require("./config/passport") (passport);
 
-app.use('/gametiles', gameTilesRouter);
 app.use('/games', gameRouter);
 app.use("/users", users);
 

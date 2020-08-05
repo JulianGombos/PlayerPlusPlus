@@ -13,7 +13,7 @@ class Navbar extends Component{
   };
 
   render(){
-    const { user } = this.props.auth;
+    const { user } = this.props.auth; //This might be the way to keep track of user data throughout the components
     console.log("User name is: " + user.name);
     return(
       <div className="pageBackground">
