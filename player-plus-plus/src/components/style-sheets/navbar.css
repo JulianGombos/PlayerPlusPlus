@@ -15,6 +15,14 @@
   left: 0;
 }
 
+.flex-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 100%;
+  width: 100%
+}
+
 .topBar {
   position: absolute;
   margin: 0%;
@@ -31,20 +39,22 @@
 }
 
 .circle {
-  position: relative;
   width: 50px;
   height: 50px;
   background: white;
   border-radius: 50%;
-  margin-bottom: 5px;
+  
 }
 
 .topBarGrid {
   display: grid;
   min-height: 100px;
-  grid-template-columns: 75px 300px 200px; /*Add more columns for search bar and login elements*/
+  height: 100%;
+  width: 100%;
+  grid-template-columns: 5% 18% 60% 6% 8%; /*Add more columns for search bar and login elements*/
   margin-left: 0.5%;
-  align-content: center;
+  align-items: center;
+  justify-content: start;
 }
 
 .leftBar {
@@ -60,7 +70,6 @@
 }
 
 .websiteNameButton {
-  position: absolute;
   font-size: 250%;
   font-family: Suez_One;
   color: white;
@@ -69,13 +78,19 @@
 }
 
 .allGamesButton {
-  position: absolute;
   font-size: 22px;
   font-family: Suez_One;
   color:white;
   text-decoration: none;
-  margin-top: 12px;
-  margin-left: 30px;
+}
+
+.loginButton {
+  width: 180px;
+  border-radius: 20px;
+  letter-spacing: 1.5px;
+  line-height: 40px;
+  box-sizing: border-box;
+  font-family: "Suez_One";
 }
 
 a:hover {

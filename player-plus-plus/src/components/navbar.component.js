@@ -1,10 +1,20 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import "./style-sheets/navbar.css";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { logoutUser } from "../actions/authActions";
 
-export default class Navbar extends Component{
+class Navbar extends Component{
+
+  onLogoutClick = e => {
+    e.preventDefault();
+    this.props.logoutUser();
+  };
 
   render(){
+    const { user } = this.props.auth;
+    console.log("User name is: " + user.name);
     return(
       <div className="pageBackground">
         <div className = "topBar">
@@ -12,8 +22,12 @@ export default class Navbar extends Component{
             <div className = "circle"></div>
             <div><Link to='/' className='websiteNameButton'>Player Plus Plus</Link></div>
             <div><Link to='/allgames' className='allGamesButton'>All Games</Link></div>
-            <div><Link to="/register" style={{width: "140px", borderRadius: "3px", letterSpacing: "1.5px"}} className="btn btn-large waves-effect waves-light hoverable blue accent-3">Register</Link></div>
-            <div><Link to="/login" style={{width: "140px", borderRadius: "3px", letterSpacing: "1.5px"}} className="btn btn-large btn-flat waves-effect white black-text">Log In</Link></div>
+            <div className="allGamesButton">{user.name}</div>
+            {/* <div><Link to="/register" style={{width: "120px", borderRadius: "20px", letterSpacing: "1.5px"}} className="btn btn-large waves-effect waves-light hoverable blue accent-3">Register</Link></div> */}
+            <div>
+              {user.name == undefined ? <Link to="/login" className="btn btn-large waves-effect waves-light white hoverable black-text accent-3 loginButton">Log In/Register</Link> :
+               <button onClick={this.onLogoutClick} className="btn btn-large waves-effect waves-light hoverable blue accent-3 loginButton">Logout</button>}
+            </div>
           </div>
         </div>
         <div className="leftBar"></div>
@@ -21,6 +35,20 @@ export default class Navbar extends Component{
     );
   }
 }
+
+Navbar.propTypes = {
+  logoutUser: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired
+};
+
+const mapStateToProps = state => ({
+  auth: state.auth
+});
+
+export default connect(
+  mapStateToProps,
+  { logoutUser }
+)(Navbar);
 
 /* export default class Navbar extends Component {
 
