@@ -29,6 +29,7 @@
 .middleColumn {
   display: flex;
   flex-direction: column;
+  overflow-y: scroll;
 }
 
 .popularPosts {
@@ -49,4 +50,8 @@
   width: 80%;
   height: 40%;
   border-radius: 15px;
+}
+
+.post {
+  color: white;
 }

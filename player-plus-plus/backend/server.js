@@ -28,12 +28,14 @@ connection.once('open', () => {
 
 const gameRouter = require('./Routes/game');
 const users = require("./Routes/users");
+const posts = require("./Routes/gamePagePost");
 
 app.use(passport.initialize());
 require("./config/passport") (passport);
 
 app.use('/games', gameRouter);
 app.use("/users", users);
+app.use("/posts", posts);
 
 app.listen(port, () => {
     console.log(`Server is running on port: ${port}`);

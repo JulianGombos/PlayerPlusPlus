@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { BrowserRouter as Router, Route} from "react-router-dom";
 import { Link } from 'react-router-dom';
 import "./style-sheets/homepage.css";
 import NavBar from "./navbar.component";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
 
 const GameName = props => (
 
@@ -15,17 +16,16 @@ const GameName = props => (
   </Link>
 )
 
-export default class TestPage extends Component{
+class HomePage extends Component{
   constructor(props) {
     super(props);
-
+    
    this.state = {games: []};
   }
 
   componentDidMount() {
     axios.get('/games/')
       .then(res => {
-        console.log(res.data);
         this.setState({games: res.data})
       })
       .catch((error) => {
@@ -54,3 +54,15 @@ export default class TestPage extends Component{
     );
   }
 } 
+
+HomePage.propTypes = {
+  auth: PropTypes.object.isRequired
+};
+
+const mapStateToProps = state => ({
+  auth: state.auth
+});
+
+export default connect(
+  mapStateToProps
+)(HomePage);

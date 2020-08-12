@@ -6,15 +6,21 @@ import { connect } from "react-redux";
 import { logoutUser } from "../actions/authActions";
 
 class Navbar extends Component{
+  constructor(props){
+    super(props);
+  }
+
 
   onLogoutClick = e => {
     e.preventDefault();
     this.props.logoutUser();
+
+    //Reloads the page so the authentication data is not in the object anymore
+    window.location.reload(false);
   };
 
   render(){
     const { user } = this.props.auth; //This might be the way to keep track of user data throughout the components
-    console.log("User name is: " + user.name);
     return(
       <div className="pageBackground">
         <div className = "topBar">
@@ -49,27 +55,3 @@ export default connect(
   mapStateToProps,
   { logoutUser }
 )(Navbar);
-
-/* export default class Navbar extends Component {
-
-  render() {
-    return (
-      <nav className="navbar navbar-dark bg-dark navbar-expand-lg">
-        <Link to="/" className="navbar-brand">ExcerTracker</Link>
-        <div className="collpase navbar-collapse">
-        <ul className="navbar-nav mr-auto">
-          <li className="navbar-item">
-          <Link to="/" className="nav-link">Exercises</Link>
-          </li>
-          <li className="navbar-item">
-          <Link to="/create" className="nav-link">Create Exercise Log</Link>
-          </li>
-          <li className="navbar-item">
-          <Link to="/user" className="nav-link">Create User</Link>
-          </li>
-        </ul>
-        </div>
-      </nav>
-    );
-  }
-} */

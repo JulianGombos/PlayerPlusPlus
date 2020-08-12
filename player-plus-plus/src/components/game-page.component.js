@@ -6,22 +6,69 @@ import "./style-sheets/gamepage.css";
 
 import NavBar from "./navbar.component";
 
+const Post = props => (
+    <div>
+      <div className="post">
+        <h2>{props.post.name}</h2>
+        <p>{props.post.message}</p>
+        <h2>{props.post.name}</h2>
+        <p>{props.post.message}</p>
+        <h2>{props.post.name}</h2>
+        <p>{props.post.message}</p>
+        <h2>{props.post.name}</h2>
+        <p>{props.post.message}</p>
+        <h2>{props.post.name}</h2>
+        <p>{props.post.message}</p>
+        <h2>{props.post.name}</h2>
+        <p>{props.post.message}</p>
+        <h2>{props.post.name}</h2>
+        <p>{props.post.message}</p>
+        <h2>{props.post.name}</h2>
+        <p>{props.post.message}</p>
+        <h2>{props.post.name}</h2>
+        <p>{props.post.message}</p>
+        <h2>{props.post.name}</h2>
+        <p>{props.post.message}</p>
+        <h2>{props.post.name}</h2>
+        <p>{props.post.message}</p>
+      </div>
+    </div>
+)
+
 export default class TestPage extends Component{
   constructor(props) {
     super(props);
 
-    this.state = {game: []}
+    this.state = {game: [], posts: []}
   }
 
   componentDidMount() {
     axios.get('/games/' + this.props.location.id)
       .then(res => {
-        console.log(res.data);
         this.setState({game: res.data})
+        this.getPosts(this.state.game._id);
       })
       .catch((error) => {
         console.log(error);
       })
+      
+  }
+
+  getPosts(gameId){
+    axios.get('/posts/' + gameId)
+      .then(res => {
+        console.log(res);
+        this.setState({posts: res.data});
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+  }
+
+  createPosts(){
+    return this.state.posts.map(currentPost =>{
+      return <Post post={currentPost} key={currentPost._id} />
+    })
   }
 
   render() {
@@ -43,6 +90,7 @@ export default class TestPage extends Component{
             </div>
             <div className="middleColumn">
               <h1 style={{color: 'white'}}>Feed</h1>
+              {this.createPosts()}
             </div>
             <h1 style={{color: 'white'}}>{this.state.game.name}</h1>
           </div>
