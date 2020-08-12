@@ -53,5 +53,55 @@
 }
 
 .post {
+  flex: 1;
+  min-height: 100px;
+  width: 65%;
+  padding-top: 15px;
+}
+
+.postHeader {
+  display: grid;
+  grid-template-columns: 60px 100%;
+  background-color: #292828;
+  height: 70px;
+  align-content: center;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.posterName {
+  font-size: 18px;
   color: white;
+  margin-left: 10px;
+  font-weight: bold;
+}
+
+.postDate {
+  font-size: 13px;
+  color: white;
+  font-weight: normal;
+}
+
+.contentBox {
+  background-color: #302f2e;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+.contentText {
+  color: white;
+  font-size: 18px;
+  margin-left: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-right: 10px;
+}
+
+
+.headerCircle {
+  width: 50px;
+  height: 50px;
+  background: white;
+  border-radius: 50%;
+  margin-left: 8px;
 }

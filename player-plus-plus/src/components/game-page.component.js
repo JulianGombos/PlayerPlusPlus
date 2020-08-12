@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { BrowserRouter as Router, Route} from "react-router-dom";
-import { Link } from 'react-router-dom';
 import "./style-sheets/gamepage.css";
 
 import NavBar from "./navbar.component";
@@ -9,28 +7,17 @@ import NavBar from "./navbar.component";
 const Post = props => (
     <div>
       <div className="post">
-        <h2>{props.post.name}</h2>
-        <p>{props.post.message}</p>
-        <h2>{props.post.name}</h2>
-        <p>{props.post.message}</p>
-        <h2>{props.post.name}</h2>
-        <p>{props.post.message}</p>
-        <h2>{props.post.name}</h2>
-        <p>{props.post.message}</p>
-        <h2>{props.post.name}</h2>
-        <p>{props.post.message}</p>
-        <h2>{props.post.name}</h2>
-        <p>{props.post.message}</p>
-        <h2>{props.post.name}</h2>
-        <p>{props.post.message}</p>
-        <h2>{props.post.name}</h2>
-        <p>{props.post.message}</p>
-        <h2>{props.post.name}</h2>
-        <p>{props.post.message}</p>
-        <h2>{props.post.name}</h2>
-        <p>{props.post.message}</p>
-        <h2>{props.post.name}</h2>
-        <p>{props.post.message}</p>
+        <div className="postHeader">
+          <div className="headerCircle"></div>
+          <div className="posterName">
+            {props.post.name}
+            <br></br>
+            <div className="postDate">{props.post.date}</div>
+          </div>
+        </div>
+        <div className="contentBox">
+          <div className="contentText">{props.post.message}</div>
+        </div>
       </div>
     </div>
 )
@@ -57,8 +44,7 @@ export default class TestPage extends Component{
   getPosts(gameId){
     axios.get('/posts/' + gameId)
       .then(res => {
-        console.log(res);
-        this.setState({posts: res.data});
+        this.setState({posts: res.data.reverse()});
       })
       .catch((error) => {
         console.log(error);
