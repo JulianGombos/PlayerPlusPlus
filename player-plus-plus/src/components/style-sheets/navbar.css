@@ -4,7 +4,7 @@
 }
 
 .pageBackground {
-  position: absolute;
+  position: fixed;
   background-color: #141414;
   width: 100%;
   height: 2000px;
@@ -13,6 +13,7 @@
   right: 0;
   bottom: 0;
   left: 0;
+  z-index: -10;
 }
 
 .flex-container {
@@ -24,7 +25,7 @@
 }
 
 .topBar {
-  position: absolute;
+  position: fixed;
   margin: 0%;
   top: 0;
   right: 0;
@@ -36,6 +37,7 @@
   border-width: 5px;
   border-color: black;
   border-radius: 0px;
+  z-index: 10;
 }
 
 .circle {
@@ -43,7 +45,6 @@
   height: 50px;
   background: white;
   border-radius: 50%;
-  
 }
 
 .topBarGrid {
@@ -55,11 +56,12 @@
   margin-left: 0.5%;
   align-items: center;
   justify-content: start;
+  z-index: 2;
 }
 
 .leftBar {
   /*Probably need a grid class to arrange all the circle elements for followed games*/
-  position: absolute;
+  position: fixed;
   width: 65px;
   height: 1000px;
   top: 96px;

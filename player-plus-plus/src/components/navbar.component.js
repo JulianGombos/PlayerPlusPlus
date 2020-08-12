@@ -22,7 +22,8 @@ class Navbar extends Component{
   render(){
     const { user } = this.props.auth; //This might be the way to keep track of user data throughout the components
     return(
-      <div className="pageBackground">
+      <div>
+        <div className="pageBackground"></div>
         <div className = "topBar">
           <div className = "topBarGrid">
             <div className = "circle"></div>
@@ -32,7 +33,7 @@ class Navbar extends Component{
             {/* <div><Link to="/register" style={{width: "120px", borderRadius: "20px", letterSpacing: "1.5px"}} className="btn btn-large waves-effect waves-light hoverable blue accent-3">Register</Link></div> */}
             <div>
               {user.name == undefined ? <Link to="/login" className="btn btn-large waves-effect waves-light white hoverable black-text accent-3 loginButton">Log In/Register</Link> :
-               <button onClick={this.onLogoutClick} className="btn btn-large waves-effect waves-light hoverable blue accent-3 loginButton">Logout</button>}
+                <button onClick={this.onLogoutClick} className="btn btn-large waves-effect waves-light hoverable blue accent-3 loginButton">Logout</button>}
             </div>
           </div>
         </div>

@@ -11,12 +11,13 @@
 
 .pageGrid {
   display: grid;
-  grid-template-columns: 600px 700px 500px;
+  grid-template-columns: 600px 580px 500px;
   grid-template-rows: 1000px;
   align-items: left;
 }
 
 .gameTitle {
+  position: fixed;
   font-size: 65px;
   font-family: Suez_One;
   color: white;
@@ -27,35 +28,41 @@
 }
 
 .middleColumn {
-  display: flex;
-  flex-direction: column;
-  overflow-y: scroll;
+  z-index: 0;
 }
 
 .popularPosts {
+  position: fixed;
   background-color: #262525;
   font-family: Suez_One;
   font-size: 35px;
-  margin-top: 15%;
-  width: 80%;
+  margin-top: 6%;
+  width: 20%;
   height: 40%;
   border-radius: 15px;
 }
 
 .popularPosters {
+  position: fixed;
   background-color: #262525;
   font-family: Suez_One;
   font-size: 35px;
-  margin-top: 5%;
-  width: 80%;
-  height: 40%;
+  margin-top: 27%;
+  width: 20%;
+  height: 30%;
   border-radius: 15px;
+}
+
+.feed {
+  display: flex;
+  flex-direction: column;
+  height: 965px;
 }
 
 .post {
   flex: 1;
   min-height: 100px;
-  width: 65%;
+  width: 85%;
   padding-top: 15px;
 }
 

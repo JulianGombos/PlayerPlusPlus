@@ -12,7 +12,7 @@ const Post = props => (
           <div className="posterName">
             {props.post.name}
             <br></br>
-            <div className="postDate">{props.post.date}</div>
+            <div className="postDate">{props.post.date.split("T")[0]}</div>
           </div>
         </div>
         <div className="contentBox">
@@ -75,10 +75,13 @@ export default class TestPage extends Component{
               </div>
             </div>
             <div className="middleColumn">
-              <h1 style={{color: 'white'}}>Feed</h1>
-              {this.createPosts()}
+              <div className="feed">
+                {this.createPosts()}
+              </div>
             </div>
-            <h1 style={{color: 'white'}}>{this.state.game.name}</h1>
+            <div className="leftColumn">
+            <h1 style={{color: 'white', position: 'fixed'}}>{this.state.game.name}</h1>
+            </div>
           </div>
         </div>
       </div>
