@@ -66,6 +66,27 @@
   padding-top: 15px;
 }
 
+.createPost {
+  flex: 1;
+  min-height: 100px;
+  width: 85%;
+  padding-top: 15px;
+}
+
+.createPostName {
+  font-size: 18px;
+  color: white;
+  margin-left: 10px;
+  font-weight: bold;
+  padding-top: 12px;
+}
+
+.postBar {
+  width: 90%;
+  color: white;
+  padding-left: 10px;
+}
+
 .postHeader {
   display: grid;
   grid-template-columns: 60px 100%;

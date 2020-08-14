@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import "./style-sheets/gamepage.css";
-
 import NavBar from "./navbar.component";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
 
 const Post = props => (
     <div>
@@ -22,11 +23,16 @@ const Post = props => (
     </div>
 )
 
-export default class TestPage extends Component{
+class GamePage extends Component{
   constructor(props) {
     super(props);
 
-    this.state = {game: [], posts: []}
+    this.state = {
+      game: [],
+      posts: [],
+      postContent: "",
+      id: this.props.location.id
+    }
   }
 
   componentDidMount() {
@@ -39,12 +45,38 @@ export default class TestPage extends Component{
         console.log(error);
       })
       
+      console.log(this.props);
   }
 
+  
+
+  onSubmit = e => {
+    e.preventDefault();
+
+    const newPost = {
+      name: this.props.auth.user.name,
+      message: this.state.postContent,
+      game: this.state.game._id
+    };
+
+    axios.post('/posts/post', newPost)
+      .then(res => {
+        console.log(res);
+        this.getPosts();
+      })
+
+    this.setState({postContent: ""});
+  };
+
+  onChange = e => {
+    this.setState({ [e.target.id]: e.target.value });
+  };
+
   getPosts(gameId){
-    axios.get('/posts/' + gameId)
+    axios.get('/posts/' + this.state.game._id)
       .then(res => {
         this.setState({posts: res.data.reverse()});
+        console.log(res);
       })
       .catch((error) => {
         console.log(error);
@@ -52,6 +84,7 @@ export default class TestPage extends Component{
   }
 
   createPosts(){
+    console.log("In createPosts()");
     return this.state.posts.map(currentPost =>{
       return <Post post={currentPost} key={currentPost._id} />
     })
@@ -75,6 +108,30 @@ export default class TestPage extends Component{
               </div>
             </div>
             <div className="middleColumn">
+                <div className="createPost">
+                  <div className="postHeader">
+                    <div className="headerCircle"></div>
+                    <div className="createPostName">
+                      {this.props.auth.user.name}
+                    </div>
+                  </div>
+                  <div className="contentBox">
+                  <form noValidate onSubmit={this.onSubmit}>
+                    <div className="postBar">
+                      <input
+                        onChange={this.onChange}
+                        value={this.state.postContent}
+                        id="postContent"
+                        style={{color: "white"}}
+                        placeholder="Create a Post Here"
+                      />
+                    </div>
+                    <div className="col s12" style={{ paddingLeft: "10px", paddingTop: "5px" }}>
+                      <button type="submit">Submit Post</button>
+                    </div>
+                  </form>`
+                  </div>
+                </div>
               <div className="feed">
                 {this.createPosts()}
               </div>
@@ -87,4 +144,16 @@ export default class TestPage extends Component{
       </div>
     );
   }
-} 
+}
+
+GamePage.propTypes = {
+  auth: PropTypes.object.isRequired
+};
+
+const mapStateToProps = state => ({
+  auth: state.auth
+});
+
+export default connect(
+  mapStateToProps
+)(GamePage);
