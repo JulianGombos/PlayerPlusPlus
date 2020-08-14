@@ -9,8 +9,8 @@ router.route('/').get((req, res) =>{
 
 router.route('/add').post((req, res) => {
   const name = req.body.name;
-
-  const newGame = new Game({name});
+  const picUrl = req.body.picUrl;
+  const newGame = new Game({name, picUrl});
 
   newGame.save()
     .then(() => res.json('Game added!'))

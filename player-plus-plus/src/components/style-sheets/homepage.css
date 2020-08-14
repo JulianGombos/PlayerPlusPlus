@@ -17,25 +17,30 @@
 .square {
   height: 230px;
   width: 230px;
-  background-image: url(./pics/MinecraftTilePic.png);
   border-radius: 15px;
 }
 
-.square a:hover {
-  background-color: rgba(127, 21, 232, 0.5);
+.square link:hover {
   color: rgba(127, 21, 232, 0.5);
 }
 
 .gameTileGrid {
   display: grid;
   grid-template-columns: 250px 250px 250px;
-  grid-template-rows: 50px 250px 250px;
+  grid-template-rows: 250px 250px;
   align-items: center;
   justify-items: center;
+  margin-left: -10px;
 }
 
 .whiteText{
   color: white;
+}
+
+.headingTextWhite{
+  color: white;
+  font-family: Suez_One;
+  display: inline;
 }
 
 .headingText{
@@ -43,4 +48,9 @@
   grid-column: 1/4;
   font-family: Suez_One;
   justify-self: start;
+  display: inline;
+}
+
+hr.purple {
+  border-top: 2px solid #8015E8
 }

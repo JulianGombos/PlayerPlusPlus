@@ -7,11 +7,12 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
 const GameName = props => (
-
+  
   <Link to={{pathname:'/game', id: props.game._id}}>
-    <div style={props.gameTileStyle}>
-      <h1 className="whiteText">{props.game.name}</h1>
-      <div className="gameTilePic"></div>
+    <div className="square">
+      <div style={{height: '230px', width: '230px', backgroundImage: `url(${require(`./style-sheets/pics/${props.game.picUrl}`)})`, borderRadius: '15px'}}>
+        {/* <h1 className="whiteText">{props.game.name}</h1> */}
+      </div>
     </div>
   </Link>
 )
@@ -35,7 +36,7 @@ class HomePage extends Component{
 
   gameList(){
     return this.state.games.map(currentGame =>{
-      var gameTileStyle = {height: '230px', width: '230px', backgroundImage: 'url(' + './style-sheets/pics/MinecraftTilePic.png' + ')', borderRadius: 15};
+      var gameTileStyle = {height: '230px', width: '230px', backgroundImage: 'url(./style-sheets/pics/MinecraftTilePic.png)', borderRadius: '15px'};
       return <GameName game={currentGame} gameStyle={gameTileStyle} key={currentGame._id} />
     })
   }
@@ -45,10 +46,14 @@ class HomePage extends Component{
       <div>
         <NavBar />
         <div className="page">
-          <div className="gameTileGrid"> {/*This gameTileGrid goes into another grid that organizes all the elements on this page */}
-            <h1 className="headingText">Featured Games</h1>
+          <div>
+            <h1 className="headingTextWhite">Featured</h1>
+            <h1 className="headingText"> Games</h1>
+          </div>
+          <div className="gameTileGrid">
             {this.gameList()}
           </div>
+          <hr className="purple" />
         </div>
       </div>
     );
