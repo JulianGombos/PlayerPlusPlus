@@ -4,22 +4,25 @@ import "./style-sheets/gamepage.css";
 import NavBar from "./navbar.component";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
+import LazyLoad from 'react-lazy-load';
 
 const Post = props => (
     <div>
-      <div className="post">
-        <div className="postHeader">
-          <div className="headerCircle"></div>
-          <div className="posterName">
-            {props.post.name}
-            <br></br>
-            <div className="postDate">{props.post.date.split("T")[0]}</div>
+      <LazyLoad onContentVisible={() => console.log('lazyloaded!')}>
+        <div className="post">
+          <div className="postHeader">
+            <div className="headerCircle"></div>
+            <div className="posterName">
+              {props.post.name}
+              <br></br>
+              <div className="postDate">{props.post.date.split("T")[0]}</div>
+            </div>
+          </div>
+          <div className="contentBox">
+            <div className="contentText">{props.post.message}</div>
           </div>
         </div>
-        <div className="contentBox">
-          <div className="contentText">{props.post.message}</div>
-        </div>
-      </div>
+      </LazyLoad>
     </div>
 )
 
@@ -33,6 +36,8 @@ class GamePage extends Component{
       postContent: "",
       id: this.props.location.id
     }
+
+    console.log(this.props);
   }
 
   componentDidMount() {
@@ -47,8 +52,6 @@ class GamePage extends Component{
       
       console.log(this.props);
   }
-
-  
 
   onSubmit = e => {
     e.preventDefault();
@@ -84,7 +87,6 @@ class GamePage extends Component{
   }
 
   createPosts(){
-    console.log("In createPosts()");
     return this.state.posts.map(currentPost =>{
       return <Post post={currentPost} key={currentPost._id} />
     })
@@ -108,28 +110,30 @@ class GamePage extends Component{
               </div>
             </div>
             <div className="middleColumn">
-                <div className="createPost">
-                  <div className="postHeader">
-                    <div className="headerCircle"></div>
-                    <div className="createPostName">
-                      {this.props.auth.user.name}
+                <div style={{display: this.props.auth.isAuthenticated ? 'block' : 'none'}}>
+                  <div className="createPost">
+                    <div className="postHeader">
+                      <div className="headerCircle"></div>
+                      <div className="createPostName">
+                        {this.props.auth.user.name}
+                      </div>
                     </div>
-                  </div>
-                  <div className="contentBox">
-                  <form noValidate onSubmit={this.onSubmit}>
-                    <div className="postBar">
-                      <input
-                        onChange={this.onChange}
-                        value={this.state.postContent}
-                        id="postContent"
-                        style={{color: "white"}}
-                        placeholder="Create a Post Here"
-                      />
+                    <div className="contentBox">
+                    <form noValidate onSubmit={this.onSubmit}>
+                      <div className="postBar">
+                        <input
+                          onChange={this.onChange}
+                          value={this.state.postContent}
+                          id="postContent"
+                          style={{color: "white"}}
+                          placeholder="Create a Post Here"
+                        />
+                      </div>
+                      <div className="col s12" style={{ paddingLeft: "10px", paddingTop: "5px" }}>
+                        <button type="submit">Submit Post</button>
+                      </div>
+                    </form>`
                     </div>
-                    <div className="col s12" style={{ paddingLeft: "10px", paddingTop: "5px" }}>
-                      <button type="submit">Submit Post</button>
-                    </div>
-                  </form>`
                   </div>
                 </div>
               <div className="feed">
