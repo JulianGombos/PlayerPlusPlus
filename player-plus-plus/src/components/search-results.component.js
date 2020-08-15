@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
-import axios from 'axios';
-import { Link } from 'react-router-dom';
+import "./style-sheets/searchresults.css";
 import NavBar from "./navbar.component";
-import "./style-sheets/allgamespage.css";
+import { Link } from 'react-router-dom';
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { logoutUser } from "../actions/authActions";
+import axios from 'axios';
 
 const GameName = props => (
   
@@ -15,17 +18,17 @@ const GameName = props => (
   </Link>
 )
 
-export default class AllGames extends Component {
-  constructor(props){
+export default class SearchResults extends Component {
+  constructor(props) {
     super(props);
 
     this.state = {games: []};
   }
 
-  componentDidMount() {
-    axios.get('/games/')
+  componentDidMount(){
+    axios.get('/games/search/' + this.props.location.games)
       .then(res => {
-        this.setState({games: res.data})
+        this.setState({games: res.data});
       })
       .catch((error) => {
         console.log(error);
@@ -43,15 +46,16 @@ export default class AllGames extends Component {
       <div>
         <NavBar />
         <div className="page">
-          <div style={{marginLeft: '10px'}}>
-            <h1 className="headingTextWhite">All</h1>
-            <h1 className="headingText"> Games</h1>
+          <div>
+            <h1 className="headingTextWhite">Search Results for </h1>
+            <h1 className="headingText">{this.props.location.games}</h1>
           </div>
           <div className="gameTileContainer">
             {this.gameList()}
           </div>
         </div>
       </div>
-    )
+    );
   }
-} 
+}
+

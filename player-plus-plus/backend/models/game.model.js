@@ -18,6 +18,8 @@ const gameSchema = new Schema({
   timestamps: true
 });
 
+gameSchema.index({name: 1}, {collation: {locale: "en", strength: 2}});
+
 const Game = mongoose.model('Game', gameSchema);
 
 module.exports = Game;

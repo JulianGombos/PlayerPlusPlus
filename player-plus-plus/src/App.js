@@ -14,6 +14,7 @@ import Register from './components/register.component';
 import Login from './components/login.component';
 import PrivateRoute from "./components/private-route/PrivateRoute";
 import Dashboard from "./components/dashboard/dashboard.component";
+import SearchResults from "./components/search-results.component";
 
 // Check for token to keep user logged in
 if (localStorage.jwtToken) {
@@ -44,15 +45,15 @@ function App(){
     <Provider store={store}>
       <Router>
         <div className="App">
+          <Switch>
           <Route exact path="/" component={HomePage} />
-          {/* <Route path="/homepage" component={HomePage} /> */}
           <Route path="/allgames" component={AllGames} />
           <Route exact path="/game" component={GamePage} />
           <Route exact path="/register" component={Register} />
           <Route exact path="/login" component={Login} />
-          <Switch>
-              <PrivateRoute exact path="/dashboard" component={Dashboard} />
-            </Switch>
+          <Route exact path="/searchResults" component={SearchResults} />
+          <PrivateRoute exact path="/dashboard" component={Dashboard} />
+          </Switch>
         </div>
       </Router>
     </Provider>

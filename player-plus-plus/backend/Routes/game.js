@@ -23,4 +23,10 @@ router.route('/:id').get((req, res) => {
     .catch(err => res.status(400).json('Error: ' + err));
 });
 
+router.route('/search/:name').get((req, res) => {
+  Game.find({name: req.params.name}).collation({locale: "en", strength: 2})
+    .then(result => res.json(result))
+    .catch(err => res.status(400).json('Error: ' + err));
+});
+
 module.exports = router;
