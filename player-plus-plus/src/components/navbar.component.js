@@ -29,11 +29,19 @@ class Navbar extends Component{
             <div className = "circle"></div>
             <div><Link to='/' className='websiteNameButton'>Player Plus Plus</Link></div>
             <div><Link to='/allgames' className='allGamesButton'>All Games</Link></div>
-            <div className="allGamesButton">{user.name}</div>
+            <div className="searchBar">
+              <div className="input-group mb-3">
+                <input type="text" className="form-control" placeholder="Search for Game" aria-label="Search for Game" aria-describedby="button-addon2" />
+                <div className="input-group-append">
+                  <button className="btn btn-dark" type="button" id="button-addon2">Search</button>
+                </div>
+              </div>
+            </div>
+            <div className="userName">{user.name}</div>
             {/* <div><Link to="/register" style={{width: "120px", borderRadius: "20px", letterSpacing: "1.5px"}} className="btn btn-large waves-effect waves-light hoverable blue accent-3">Register</Link></div> */}
-            <div>
-              {user.name == undefined ? <Link to="/login" className="btn btn-large waves-effect waves-light white hoverable black-text accent-3 loginButton">Log In/Register</Link> :
-                <button onClick={this.onLogoutClick} className="btn btn-large waves-effect waves-light hoverable blue accent-3 loginButton">Logout</button>}
+            <div className="loginButton">
+              {user.name == undefined ? <Link to="/login" className="btn btn-lg btn-secondary">Log In/Register</Link> :
+                <button onClick={this.onLogoutClick} className="btn btn-lg btn-secondary">Logout</button>}
             </div>
           </div>
         </div>

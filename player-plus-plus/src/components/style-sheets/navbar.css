@@ -52,7 +52,7 @@
   min-height: 100px;
   height: 100%;
   width: 100%;
-  grid-template-columns: 5% 18% 60% 6% 8%; /*Add more columns for search bar and login elements*/
+  grid-template-columns: 5% 18% 10% 50% 5% 15%;
   margin-left: 0.5%;
   align-items: center;
   justify-content: start;
@@ -86,13 +86,22 @@
   text-decoration: none;
 }
 
+.userName {
+  font-size: 22px;
+  font-family: Suez_One;
+  color:white;
+  justify-self: start;
+}
+
+.searchBar {
+  width: 55%;
+  margin-top: 10px;
+}
+
 .loginButton {
-  width: 180px;
-  border-radius: 20px;
   letter-spacing: 1.5px;
-  line-height: 40px;
-  box-sizing: border-box;
   font-family: "Suez_One";
+  justify-self: start;
 }
 
 a:hover {

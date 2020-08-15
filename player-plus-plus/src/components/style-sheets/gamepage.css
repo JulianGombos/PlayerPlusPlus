@@ -76,7 +76,7 @@
 .createPostName {
   font-size: 18px;
   color: white;
-  margin-left: 10px;
+  margin-left: -25px;
   font-weight: bold;
   padding-top: 12px;
 }
@@ -97,12 +97,19 @@
   border-top-right-radius: 10px;
 }
 
-.posterName {
+/* .posterName {
   font-size: 18px;
   color: white;
   margin-left: 10px;
   font-weight: bold;
-}
+} */
+
+.posterName {
+  font-size: 18px;
+  color: white;
+  margin-left: -25px;
+  font-weight: bold;
+} 
 
 .postDate {
   font-size: 13px;
@@ -131,5 +138,5 @@
   height: 50px;
   background: white;
   border-radius: 50%;
-  margin-left: 8px;
+  margin-left: -25px;
 }
