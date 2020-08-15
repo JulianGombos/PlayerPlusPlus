@@ -8,7 +8,7 @@ import { Provider } from "react-redux";
 import store from "./store";
 
 import HomePage from './components/home-page.component';
-//import AllGames from './components/all-games';
+import AllGames from './components/all-games.component';
 import GamePage from './components/game-page.component';
 import Register from './components/register.component';
 import Login from './components/login.component';
@@ -46,7 +46,7 @@ function App(){
         <div className="App">
           <Route exact path="/" component={HomePage} />
           {/* <Route path="/homepage" component={HomePage} /> */}
-          {/* <Route path="/allgames" component={AllGames} /> */}
+          <Route path="/allgames" component={AllGames} />
           <Route exact path="/game" component={GamePage} />
           <Route exact path="/register" component={Register} />
           <Route exact path="/login" component={Login} />

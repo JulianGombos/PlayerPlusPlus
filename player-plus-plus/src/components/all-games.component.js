@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import "./style-sheets/homepage.css";
 import NavBar from "./navbar.component";
-import PropTypes from "prop-types";
-import { connect } from "react-redux";
+import "./style-sheets/allgamespage.css";
 
 const GameName = props => (
   
@@ -17,19 +15,16 @@ const GameName = props => (
   </Link>
 )
 
-class HomePage extends Component{
-  constructor(props) {
+export default class AllGames extends Component {
+  constructor(props){
     super(props);
-    
-   this.state = {games: []};
+
+    this.state = {games: []};
   }
 
   componentDidMount() {
     axios.get('/games/')
       .then(res => {
-        while(res.data.length > 6){
-          res.data.pop();
-        }
         this.setState({games: res.data})
       })
       .catch((error) => {
@@ -44,33 +39,20 @@ class HomePage extends Component{
     })
   }
 
-  render() {
+  render(){
     return(
       <div>
         <NavBar />
         <div className="page">
-          <div>
-            <h1 className="headingTextWhite">Featured</h1>
+          <div style={{marginLeft: '10px'}}>
+            <h1 className="headingTextWhite">All</h1>
             <h1 className="headingText"> Games</h1>
           </div>
-          <div className="gameTileGrid">
+          <div className="gameTileContainer">
             {this.gameList()}
           </div>
-          <hr className="purple" />
         </div>
       </div>
-    );
+    )
   }
 } 
-
-HomePage.propTypes = {
-  auth: PropTypes.object.isRequired
-};
-
-const mapStateToProps = state => ({
-  auth: state.auth
-});
-
-export default connect(
-  mapStateToProps
-)(HomePage);
