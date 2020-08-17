@@ -30,20 +30,20 @@ class GamePage extends Component{
   constructor(props) {
     super(props);
 
-    this.state = {
+    /* this.state = {
       game: [],
       posts: [],
       postContent: "",
       id: this.props.location.id
-    }
-
-    console.log(this.props);
+    } */
+    this.state = this.getInitialState();
   }
 
   componentDidMount() {
     axios.get('/games/' + this.props.location.id)
       .then(res => {
-        this.setState({game: res.data})
+        this.setSavedGame(res.data);
+        //this.setState({game: res.data})
         this.getPosts(this.state.game._id);
       })
       .catch((error) => {
@@ -78,12 +78,37 @@ class GamePage extends Component{
   getPosts(gameId){
     axios.get('/posts/' + this.state.game._id)
       .then(res => {
-        this.setState({posts: res.data.reverse()});
+        this.setSavedPosts(res.data.reverse());
+        //this.setState({posts: res.data.reverse()});
         console.log(res);
       })
       .catch((error) => {
         console.log(error);
       })
+  }
+
+  getInitialState() {
+    var game = JSON.parse(localStorage.getItem('Game')) || [];
+    var posts = JSON.parse(localStorage.getItem('Posts')) || [];
+    var postContent = "";
+    var id = localStorage.getItem('Id') || this.props.location.id;
+
+    return {
+      game: game,
+      posts: posts,
+      postContent: postContent,
+      id: id
+    };
+  }
+
+  setSavedGame(game) {
+    localStorage.setItem('Game', JSON.stringify(game));
+    this.setState({game: game});
+  }
+
+  setSavedPosts(posts) {
+    localStorage.setItem('Posts', JSON.stringify(posts));
+    this.setState({posts: posts});
   }
 
   createPosts(){
@@ -119,20 +144,20 @@ class GamePage extends Component{
                       </div>
                     </div>
                     <div className="contentBox">
-                    <form noValidate onSubmit={this.onSubmit}>
-                      <div className="postBar">
-                        <input
-                          onChange={this.onChange}
-                          value={this.state.postContent}
-                          id="postContent"
-                          style={{color: "white"}}
-                          placeholder="Create a Post Here"
-                        />
-                      </div>
-                      <div className="col s12" style={{ paddingLeft: "10px", paddingTop: "5px" }}>
-                        <button type="submit">Submit Post</button>
-                      </div>
-                    </form>`
+                      <form noValidate onSubmit={this.onSubmit}>
+                        <div className="postBar">
+                          <input
+                            onChange={this.onChange}
+                            value={this.state.postContent}
+                            id="postContent"
+                            style={{color: "white"}}
+                            placeholder="Create a Post Here"
+                          />
+                        </div>
+                        <div className="col s12" style={{ paddingLeft: "10px", paddingTop: "5px" }}>
+                          <button type="submit">Submit Post</button>
+                        </div>
+                      </form>
                     </div>
                   </div>
                 </div>

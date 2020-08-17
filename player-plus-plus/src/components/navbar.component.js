@@ -22,24 +22,6 @@ class Navbar extends Component{
     window.location.reload(false);
   };
 
-  componentWillReceiveProps(nextProps) {
-    console.log("nextProps");
-  }
-
-  onSubmit = e => {
-    e.preventDefault();
-
-    console.log(this.state.search);
-    axios.get('/games/search/' + this.state.search)
-      .then(res => {
-        //this.props.history.push({pathname: '/searchResults', state: {games: res.data}});
-        console.log(res.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      })
-  }
-
   onChange = e => {
     this.setState({ [e.target.id]: e.target.value });
   };
