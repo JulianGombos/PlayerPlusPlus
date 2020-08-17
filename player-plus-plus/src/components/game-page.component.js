@@ -30,12 +30,6 @@ class GamePage extends Component{
   constructor(props) {
     super(props);
 
-    /* this.state = {
-      game: [],
-      posts: [],
-      postContent: "",
-      id: this.props.location.id
-    } */
     this.state = this.getInitialState();
   }
 
@@ -43,7 +37,6 @@ class GamePage extends Component{
     axios.get('/games/' + this.props.location.id)
       .then(res => {
         this.setSavedGame(res.data);
-        //this.setState({game: res.data})
         this.getPosts(this.state.game._id);
       })
       .catch((error) => {
@@ -79,7 +72,6 @@ class GamePage extends Component{
     axios.get('/posts/' + this.state.game._id)
       .then(res => {
         this.setSavedPosts(res.data.reverse());
-        //this.setState({posts: res.data.reverse()});
         console.log(res);
       })
       .catch((error) => {
@@ -146,16 +138,19 @@ class GamePage extends Component{
                     <div className="contentBox">
                       <form noValidate onSubmit={this.onSubmit}>
                         <div className="postBar">
-                          <input
-                            onChange={this.onChange}
-                            value={this.state.postContent}
-                            id="postContent"
-                            style={{color: "white"}}
-                            placeholder="Create a Post Here"
-                          />
+                          <div className="form-group">
+                            <input
+                              onChange={this.onChange}
+                              value={this.state.postContent}
+                              id="postContent"
+                              style={{color: "black"}}
+                              placeholder="Create a Post Here"
+                              className="form-control"
+                            />
+                          </div>
                         </div>
-                        <div className="col s12" style={{ paddingLeft: "10px", paddingTop: "5px" }}>
-                          <button type="submit">Submit Post</button>
+                        <div style={{ paddingLeft: "10px", paddingBottom: "10px", marginTop: "-5px"}}>
+                          <button className="btn submitPostButton" type="submit">Submit Post</button>
                         </div>
                       </form>
                     </div>

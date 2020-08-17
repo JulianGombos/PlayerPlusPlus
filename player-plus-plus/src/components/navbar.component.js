@@ -41,7 +41,7 @@ class Navbar extends Component{
                 <div className="input-group mb-3">
                   <input type="text" onChange={this.onChange} id="search" value={this.state.search} className="form-control" placeholder="Search for Game" aria-label="Search for Game" aria-describedby="button-addon2" />
                   <div className="input-group-append">
-                    <Link to={{pathname:'/searchResults', games: this.state.search}}><button className="btn btn-dark" type="button" id="button-addon2">Search</button></Link>
+                    <Link to={{pathname:'/searchResults/' + this.state.search, games: this.state.search}}><button className="btn btn-dark" type="button" id="button-addon2">Search</button></Link>
                   </div>
                 </div>
               </div>

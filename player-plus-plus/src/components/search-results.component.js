@@ -35,6 +35,16 @@ export default class SearchResults extends Component {
       })
   }
 
+  componentDidUpdate(){
+    axios.get('/games/search/' + this.props.location.games)
+      .then(res => {
+        this.setState({games: res.data});
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+  }
+
   gameList(){
     return this.state.games.map(currentGame =>{
       return <GameName game={currentGame} key={currentGame._id} />

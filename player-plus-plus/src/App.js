@@ -47,11 +47,11 @@ function App(){
         <div className="App">
           <Switch>
           <Route exact path="/" component={HomePage} />
-          <Route path="/allgames" component={AllGames} />
+          <Route exact path="/allgames" component={AllGames} />
           <Route exact path="/game" component={GamePage} />
           <Route exact path="/register" component={Register} />
           <Route exact path="/login" component={Login} />
-          <Route exact path="/searchResults" component={SearchResults} />
+          <Route path="/searchResults" component={SearchResults} />
           <PrivateRoute exact path="/dashboard" component={Dashboard} />
           </Switch>
         </div>
