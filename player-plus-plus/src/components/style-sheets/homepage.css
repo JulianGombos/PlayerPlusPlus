@@ -51,6 +51,12 @@
   display: inline;
 }
 
+.carouselGameTiles {
+  white-space: nowrap;
+  overflow: hidden;
+  display: inline;
+}
+
 hr.purple {
   border-top: 2px solid #8015E8;
   margin-top: 28px;

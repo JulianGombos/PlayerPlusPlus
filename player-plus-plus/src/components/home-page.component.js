@@ -11,37 +11,68 @@ const GameName = props => (
   <Link to={{pathname:'/game', id: props.game._id}}>
     <div className="square">
       <div style={{height: '230px', width: '230px', backgroundImage: `url(${require(`./style-sheets/pics/${props.game.picUrl}`)})`, borderRadius: '15px'}}>
-        {/* <h1 className="whiteText">{props.game.name}</h1> */}
       </div>
     </div>
   </Link>
+)
+
+const FeaturedGames = props => (
+  <div id="carouselExampleControls" className="carousel slide" data-interval="false">
+    <div className="carousel-inner" style={{maxWidth: "750px"}}>
+      <div className="carousel-item active" style={{maxWidth: "750px"}}>
+        <div style={{display: "inline-block"}}>{props.games[0]}</div>
+        <div style={{display: "inline-block"}}>{props.games[1]}</div>
+        <div style={{display: "inline-block"}}>{props.games[2]}</div>
+      </div>
+      <div className="carousel-item" style={{maxWidth: "750px"}}>
+        <div style={{display: "inline-block"}}>{props.games[3]}</div>
+        <div style={{display: "inline-block"}}>{props.games[4]}</div>
+        <div style={{display: "inline-block"}}>{props.games[5]}</div>
+      </div>
+    </div>
+    <a className="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+      <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span className="sr-only">Previous</span>
+    </a>
+    <a className="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+      <span className="carousel-control-next-icon" aria-hidden="true"></span>
+      <span className="sr-only">Next</span>
+    </a>
+  </div>
 )
 
 class HomePage extends Component{
   constructor(props) {
     super(props);
     
-   this.state = {games: []};
+   this.state = {games: [], gameTiles: [], featuredGames: []};
+
   }
 
   componentDidMount() {
     axios.get('/games/')
       .then(res => {
-        while(res.data.length > 6){
+        /* while(res.data.length > 6){
           res.data.pop();
-        }
-        this.setState({games: res.data})
+        } */
+        this.setState({games: res.data});
+        this.gameList();
       })
       .catch((error) => {
         console.log(error);
       })
+
   }
 
   gameList(){
-    return this.state.games.map(currentGame =>{
-      var gameTileStyle = {height: '230px', width: '230px', backgroundImage: 'url(./style-sheets/pics/MinecraftTilePic.png)', borderRadius: '15px'};
-      return <GameName game={currentGame} gameStyle={gameTileStyle} key={currentGame._id} />
-    })
+    var tiles = this.state.games.map(currentGame =>{
+      return <GameName game={currentGame} key={currentGame._id} />
+    });
+    this.setState({gameTiles: tiles});
+  }
+
+  createFeaturedGames(){
+      return <FeaturedGames games={this.state.gameTiles} />
   }
 
   render() {
@@ -53,8 +84,8 @@ class HomePage extends Component{
             <h1 className="headingTextWhite">Featured</h1>
             <h1 className="headingText"> Games</h1>
           </div>
-          <div className="gameTileGrid">
-            {this.gameList()}
+          <div style={{marginLeft: "-20px"}}>
+            {this.createFeaturedGames()}
           </div>
           <hr className="purple" />
         </div>
