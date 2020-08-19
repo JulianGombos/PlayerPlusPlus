@@ -1,0 +1,178 @@
+@font-face {
+  font-family: "Suez_One";
+  src: url("./fonts/suezone.ttf");
+}
+
+.page {
+  position: absolute;
+  top: 110px;
+  left: 80px;
+}
+
+.pageGrid {
+  display: grid;
+  grid-template-columns: 600px 580px 500px;
+  grid-template-rows: 1000px;
+  align-items: left;
+}
+
+.gameTitle {
+  /* height: 100px; */
+  position: fixed;
+  font-size: 35px;
+  font-family: Suez_One;
+  color: white;
+  margin-top: 22px;
+  margin-left: 10px;
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+
+.gameTitlePic {
+  position: fixed;
+  height: 100px;
+  width: 475px;
+  border-radius: 15px;
+}
+
+.followButton {
+  font-family: Suez_One;
+  color: white;
+  width: 475px;
+  background-color: #8015E8;
+  position: fixed;
+  margin-top: 110px;
+  border-radius: 15px;
+}
+
+.leftColumn {
+  
+}
+
+.middleColumn {
+  z-index: 0;
+}
+
+.rightColumn {
+  
+}
+
+.popularPosts {
+  position: fixed;
+  background-color: #262525;
+  font-family: Suez_One;
+  font-size: 35px;
+  margin-top: 168px;
+  width: 25%;
+  height: 40%;
+  border-radius: 15px;
+}
+
+.popularPosters {
+  position: fixed;
+  background-color: #262525;
+  font-family: Suez_One;
+  font-size: 35px;
+  margin-top: 553px;
+  /* width: 475px; */
+  width: 25%;
+  height: 30%;
+  border-radius: 15px;
+}
+
+.feed {
+  display: flex;
+  flex-direction: column;
+  height: 965px;
+}
+
+.post {
+  flex: 1;
+  min-height: 100px;
+  width: 85%;
+  padding-top: 15px;
+}
+
+.createPost {
+  flex: 1;
+  min-height: 100px;
+  width: 85%;
+}
+
+.createPostName {
+  font-size: 18px;
+  color: white;
+  margin-left: -25px;
+  font-weight: bold;
+  padding-top: 12px;
+}
+
+.postBar {
+  font-family: "Suez_One";
+  width: 98%;
+  color: white;
+  padding-left: 10px;
+  padding-top: 10px;
+}
+
+.postHeader {
+  display: grid;
+  grid-template-columns: 60px 100%;
+  background-color: #292828;
+  height: 70px;
+  align-content: center;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+/* .posterName {
+  font-size: 18px;
+  color: white;
+  margin-left: 10px;
+  font-weight: bold;
+} */
+
+.posterName {
+  font-size: 18px;
+  color: white;
+  margin-left: -25px;
+  font-weight: bold;
+} 
+
+.postDate {
+  font-size: 13px;
+  color: white;
+  font-weight: normal;
+}
+
+.contentBox {
+  background-color: #302f2e;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+.contentText {
+  color: white;
+  font-size: 18px;
+  margin-left: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-right: 10px;
+}
+
+.headerCircle {
+  width: 50px;
+  height: 50px;
+  background: white;
+  border-radius: 50%;
+  margin-left: -25px;
+}
+
+.submitPostButton {
+  font-family: "Suez_One";
+  background-color: #8015E8;
+  border: none;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  font-size: 14px;
+}

@@ -1,38 +1,63 @@
+@font-face {
+  font-family: "Suez_One";
+  src: url("./fonts/suezone.ttf");
+}
+
 .page {
   position: absolute;
   top: 110px;
   left: 80px;
 }
 
-.square {
-  height: 330px;
-  width: 330px;
-  background: url(./pics/minecraft.jpg) 50% 40%/150% 99% no-repeat; /*These image settings are set for minecraft image specifically*/
-  border-radius: 15px;
-  border-style: solid;
-  border-width: 5px;
-  border-color: black;
+.background {
+  background-color: #141414;
+  height: 1000px;
 }
 
-.square a:hover {
-  background-color: rgba(127, 21, 232, 0.5);
+.square {
+  height: 230px;
+  width: 230px;
+  border-radius: 15px;
+}
+
+.square link:hover {
   color: rgba(127, 21, 232, 0.5);
 }
 
 .gameTileGrid {
   display: grid;
-  grid-template-columns: 350px 350px 350px;
-  grid-template-rows: 50px 350px 350px;
+  grid-template-columns: 250px 250px 250px;
+  grid-template-rows: 250px 250px;
   align-items: center;
   justify-items: center;
+  margin-left: -10px;
 }
 
 .whiteText{
   color: white;
 }
 
+.headingTextWhite{
+  color: white;
+  font-family: Suez_One;
+  display: inline;
+}
+
 .headingText{
   color: #8015E8;
   grid-column: 1/4;
+  font-family: Suez_One;
   justify-self: start;
+  display: inline;
+}
+
+.carouselGameTiles {
+  white-space: nowrap;
+  overflow: hidden;
+  display: inline;
+}
+
+hr.purple {
+  border-top: 1px solid #8015E8;
+  margin-top: 20px;
 }

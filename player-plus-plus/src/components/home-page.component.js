@@ -1,62 +1,107 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { BrowserRouter as Router, Route} from "react-router-dom";
 import { Link } from 'react-router-dom';
 import "./style-sheets/homepage.css";
-
 import NavBar from "./navbar.component";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
 
 const GameName = props => (
   
-  <Link to={props.game.pageurl}>
+  <Link to={{pathname:'/game', id: props.game._id}}>
     <div className="square">
-      <h1 className="whiteText">{props.game.name}</h1>
-      <div className="gameTilePic"></div>
+      <div style={{height: '230px', width: '230px', backgroundImage: `url(${require(`./style-sheets/pics/TilePics/${props.game.picUrl}`)})`, borderRadius: '15px'}}>
+      </div>
     </div>
   </Link>
 )
 
-export default class TestPage extends Component{
+const FeaturedGames = props => (
+  <div id="carouselExampleControls" className="carousel slide" data-interval="false">
+    <div className="carousel-inner" style={{maxWidth: "750px"}}>
+      <div className="carousel-item active" style={{maxWidth: "750px"}}>
+        <div style={{display: "inline-block"}}>{props.games[0]}</div>
+        <div style={{display: "inline-block"}}>{props.games[1]}</div>
+        <div style={{display: "inline-block"}}>{props.games[2]}</div>
+      </div>
+      <div className="carousel-item" style={{maxWidth: "750px"}}>
+        <div style={{display: "inline-block"}}>{props.games[3]}</div>
+        <div style={{display: "inline-block"}}>{props.games[4]}</div>
+        <div style={{display: "inline-block"}}>{props.games[5]}</div>
+      </div>
+    </div>
+    <a className="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+      <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span className="sr-only">Previous</span>
+    </a>
+    <a className="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+      <span className="carousel-control-next-icon" aria-hidden="true"></span>
+      <span className="sr-only">Next</span>
+    </a>
+  </div>
+)
+
+class HomePage extends Component{
   constructor(props) {
     super(props);
+    
+   this.state = {games: [], gameTiles: [], featuredGames: []};
 
-   this.state = {games: []};
   }
 
   componentDidMount() {
-    axios.get('http://localhost:5000/gametiles/')
+    axios.get('/games/')
       .then(res => {
-        console.log(res.data);
-        this.setState({games: res.data})
+        /* while(res.data.length > 6){
+          res.data.pop();
+        } */
+        this.setState({games: res.data});
+        this.gameList();
       })
       .catch((error) => {
-        console.Console.log(error);
+        console.log(error);
       })
+
   }
 
   gameList(){
-    return this.state.games.map(currentGame =>{
+    var tiles = this.state.games.map(currentGame =>{
       return <GameName game={currentGame} key={currentGame._id} />
-    })
+    });
+    this.setState({gameTiles: tiles});
   }
 
-  /* setRoutes(){
-    return this.state.games.map(currentGame => {
-      return <Route path={currentGame.pageurl} component={} />
-    })
-  } */
+  createFeaturedGames(){
+      return <FeaturedGames games={this.state.gameTiles} />
+  }
 
   render() {
     return(
       <div>
         <NavBar />
         <div className="page">
-          <div className="gameTileGrid"> {/*This gameTileGrid goes into another grid that organizes all the elements on this page */}
-            <h1 className="headingText">Featured Games</h1>
-            {this.gameList()}
+          <div>
+            <h1 className="headingTextWhite">Featured</h1>
+            <h1 className="headingText"> Games</h1>
           </div>
+          <div style={{marginLeft: "-20px"}}>
+            {this.createFeaturedGames()}
+          </div>
+          <hr className="purple" />
         </div>
       </div>
     );
   }
 } 
+
+HomePage.propTypes = {
+  auth: PropTypes.object.isRequired
+};
+
+const mapStateToProps = state => ({
+  auth: state.auth
+});
+
+export default connect(
+  mapStateToProps
+)(HomePage);
