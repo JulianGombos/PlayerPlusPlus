@@ -12,6 +12,10 @@ const gameSchema = new Schema({
   picUrl: {
     type: String,
     required: true
+  },
+  gameHeadPicUrl: {
+    type: String,
+    required: true
   }
 },
  {

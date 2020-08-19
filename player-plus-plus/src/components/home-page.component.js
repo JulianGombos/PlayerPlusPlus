@@ -10,7 +10,7 @@ const GameName = props => (
   
   <Link to={{pathname:'/game', id: props.game._id}}>
     <div className="square">
-      <div style={{height: '230px', width: '230px', backgroundImage: `url(${require(`./style-sheets/pics/${props.game.picUrl}`)})`, borderRadius: '15px'}}>
+      <div style={{height: '230px', width: '230px', backgroundImage: `url(${require(`./style-sheets/pics/TilePics/${props.game.picUrl}`)})`, borderRadius: '15px'}}>
       </div>
     </div>
   </Link>

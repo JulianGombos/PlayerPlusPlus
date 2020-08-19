@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { loginUser } from "../actions/authActions";
 import classnames from "classnames";
+import "./style-sheets/loginpage.css";
 
 // class Login extends Component {
 //   constructor() {
@@ -191,70 +192,63 @@ class Login extends Component {
   render() {
     const { errors } = this.state;
     return (
-      <div className="container">
-        <div style={{ marginTop: "4rem" }} className="row">
-          <div style={{width: "50%"}}>
-            <Link to="/" className="btn-flat waves-effect">
-              <i className="material-icons left">keyboard_backspace</i> Back to
-              home
-            </Link>
-            <div>
-              <h4>
-                <b>Login</b> below
-              </h4>
-              <p className="grey-text text-darken-1">
-                Don't have an account? <Link to="/register">Register</Link>
-              </p>
+      <div className="pageBackground">
+        <div className="container">
+            <div style={{ marginTop: "4rem" }} className="row">
+              <div style={{width: "50%"}}>
+                <Link to="/" className="backToHome">
+                  <i className="material-icons left">keyboard_backspace</i> Back to
+                  home
+                </Link>
+                <div>
+                  <h4 style={{color: "white"}}>
+                    <b>Login</b> to <b style={{color: "#8015E8"}}>PlayerPlusPlus</b>
+                  </h4>
+                  <p style={{color: "white"}}>
+                    Don't have an account? <Link to="/register" className="register">Click Here to Register.</Link>
+                  </p>
+                </div>
+                <form noValidate onSubmit={this.onSubmit}>
+                  <div className="form-group">
+                    <label for="email" style={{color: "white"}}>Email address</label>
+                    <input
+                      onChange={this.onChange}
+                      value={this.state.email}
+                      error={errors.email}
+                      id="email"
+                      type="email"
+                      className={classnames("form-control", {
+                        invalid: errors.email || errors.emailnotfound
+                      })}
+                    />
+                    <span className="red-text">
+                      {errors.email}
+                      {errors.emailnotfound}
+                    </span>
+                  </div>
+                  <div className="form-group">
+                    <label for="password" style={{color: "white"}}>Password</label>
+                    <input
+                      onChange={this.onChange}
+                      value={this.state.password}
+                      error={errors.password}
+                      id="password"
+                      type="password"
+                      className={classnames("form-control", {
+                        invalid: errors.password || errors.passwordincorrect
+                      })}
+                    />
+                    <span className="red-text">
+                      {errors.password}
+                      {errors.passwordincorrect}
+                    </span>
+                  </div>
+                  <div>
+                    <button type="submit" className="btn btn-lg loginPageButton">Login</button>
+                  </div>
+                </form>
+              </div>
             </div>
-            <form noValidate onSubmit={this.onSubmit}>
-              <div className="form-group">
-                <label for="email">Email address</label>
-                <input
-                  onChange={this.onChange}
-                  value={this.state.email}
-                  error={errors.email}
-                  id="email"
-                  type="email"
-                  className={classnames("form-control", {
-                    invalid: errors.email || errors.emailnotfound
-                  })}
-                />
-                <span className="red-text">
-                  {errors.email}
-                  {errors.emailnotfound}
-                </span>
-              </div>
-              <div className="form-group">
-                <label for="password">Password</label>
-                <input
-                  onChange={this.onChange}
-                  value={this.state.password}
-                  error={errors.password}
-                  id="password"
-                  type="password"
-                  className={classnames("form-control", {
-                    invalid: errors.password || errors.passwordincorrect
-                  })}
-                />
-                <span className="red-text">
-                  {errors.password}
-                  {errors.passwordincorrect}
-                </span>
-              </div>
-              <div>
-                <button
-                  style={{
-                    width: "150px",
-                    letterSpacing: "1.5px"
-                  }}
-                  type="submit"
-                  className="btn btn-lg btn-primary"
-                >
-                  Login
-                </button>
-              </div>
-            </form>
-          </div>
         </div>
       </div>
     );

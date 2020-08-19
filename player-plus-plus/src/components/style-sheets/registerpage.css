@@ -1,0 +1,23 @@
+.pageBackground {
+  background-color: #141414;
+}
+
+.backToHome {
+  color: white;
+}
+
+.login {
+  color: white;
+}
+
+.registerButton {
+  background-color: #8015E8;
+  font-size: 18px;
+  width: 150px;
+  letter-spacing: 1.5px;
+  width: 100%;
+}
+
+.container {
+  margin-top: 50px;
+}

@@ -17,10 +17,31 @@
 }
 
 .gameTitle {
+  /* height: 100px; */
   position: fixed;
-  font-size: 65px;
+  font-size: 35px;
   font-family: Suez_One;
   color: white;
+  margin-top: 22px;
+  margin-left: 10px;
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+
+.gameTitlePic {
+  position: fixed;
+  height: 100px;
+  width: 475px;
+  border-radius: 15px;
+}
+
+.followButton {
+  font-family: Suez_One;
+  color: white;
+  width: 475px;
+  background-color: #8015E8;
+  position: fixed;
+  margin-top: 110px;
+  border-radius: 15px;
 }
 
 .leftColumn {
@@ -31,13 +52,17 @@
   z-index: 0;
 }
 
+.rightColumn {
+  
+}
+
 .popularPosts {
   position: fixed;
   background-color: #262525;
   font-family: Suez_One;
   font-size: 35px;
-  margin-top: 6%;
-  width: 20%;
+  margin-top: 168px;
+  width: 25%;
   height: 40%;
   border-radius: 15px;
 }
@@ -47,8 +72,9 @@
   background-color: #262525;
   font-family: Suez_One;
   font-size: 35px;
-  margin-top: 27%;
-  width: 20%;
+  margin-top: 553px;
+  /* width: 475px; */
+  width: 25%;
   height: 30%;
   border-radius: 15px;
 }
@@ -70,7 +96,6 @@
   flex: 1;
   min-height: 100px;
   width: 85%;
-  padding-top: 15px;
 }
 
 .createPostName {
@@ -82,6 +107,7 @@
 }
 
 .postBar {
+  font-family: "Suez_One";
   width: 98%;
   color: white;
   padding-left: 10px;
@@ -142,6 +168,7 @@
 }
 
 .submitPostButton {
+  font-family: "Suez_One";
   background-color: #8015E8;
   border: none;
   color: white;

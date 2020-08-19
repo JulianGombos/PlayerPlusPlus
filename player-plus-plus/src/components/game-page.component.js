@@ -41,9 +41,7 @@ class GamePage extends Component{
       })
       .catch((error) => {
         console.log(error);
-      })
-      
-      console.log(this.props);
+      });
   }
 
   onSubmit = e => {
@@ -89,7 +87,7 @@ class GamePage extends Component{
       game: game,
       posts: posts,
       postContent: postContent,
-      id: id
+      id: id,
     };
   }
 
@@ -116,8 +114,11 @@ class GamePage extends Component{
         <div className="page">
           <div className="pageGrid">
             <div className="leftColumn">
-              <div className="gameTitle">
-                {this.state.game.name}
+              <div style={{height: '100px', width: '475px', backgroundImage: `url(${require(`./style-sheets/pics/GamePageHeadPics/${this.state.game.gameHeadPicUrl}`)})`, borderRadius: '15px', position: "fixed"}}>
+                <div className="gameTitle">{this.state.game.name}</div>
+              </div>
+              <div>
+                <button type="button" className="btn btn-lg followButton">Follow This Game</button>
               </div>
               <div className="popularPosts">
                 <p style={{color: 'white', marginLeft: '10px'}}>Popular Posts</p>
@@ -160,9 +161,7 @@ class GamePage extends Component{
                 {this.createPosts()}
               </div>
             </div>
-            <div className="leftColumn">
-            <h1 style={{color: 'white', position: 'fixed'}}>{this.state.game.name}</h1>
-            </div>
+            <div className="rightColumn"></div>
           </div>
         </div>
       </div>

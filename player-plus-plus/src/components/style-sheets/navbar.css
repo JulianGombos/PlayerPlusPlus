@@ -52,7 +52,7 @@
   min-height: 100px;
   height: 100%;
   width: 100%;
-  grid-template-columns: 5% 18% 10% 50% 5% 15%;
+  grid-template-columns: 5% 18% 10% 45% 16% 10%;
   margin-left: 0.5%;
   align-items: center;
   justify-content: start;
@@ -75,7 +75,6 @@
   font-size: 250%;
   font-family: Suez_One;
   color: white;
-
   text-decoration: none;
 }
 
@@ -94,6 +93,7 @@
 }
 
 .searchBar {
+  font-family: "Suez_One";
   width: 55%;
   margin-top: 10px;
 }
@@ -104,6 +104,8 @@
   font-size: 16px;
   overflow: hidden;
   white-space: nowrap;
+  width: 100%;
+  margin-left: 80px;
 }
 
 a:hover {
@@ -113,7 +115,6 @@ a:hover {
 
 .profileDropdown {
   font-family: "Suez_One";
-  padding-left: 120px;
   padding-bottom: 2px;
   letter-spacing: 1.5px;
 }
