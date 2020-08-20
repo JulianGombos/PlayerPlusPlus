@@ -214,3 +214,23 @@ hr.replyOptionsDivider {
   border-top: 1px solid #615f5e;
   width: 95%;
 }
+
+.postReplyButton {
+  background-color: #8015E8;
+  border: none;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px; 
+  width: 48%;
+}
+
+.closeModalButton {
+  background-color: #615f5e;
+  border: none;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  width: 48.5%;
+}

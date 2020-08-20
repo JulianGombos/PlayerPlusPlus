@@ -16,10 +16,9 @@ router.route('/post').post((req, res) => {
   const newPost = new GamePagePost({name, message, game, platform});
 
   newPost.save()
-    .then(() => res.json('Post added!'))
+    .then(() => res.json('Reply added!'))
     .catch(err => res.status(400).json('Error: ' + err));
 });
-
 
 router.route('/:game').get((req, res) => {
   GamePagePost.find({game: req.params.game})

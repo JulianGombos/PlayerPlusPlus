@@ -27,8 +27,8 @@ const Post = props => (
             <div className="contentText">{props.post.message}</div>
             <hr className="replyOptionsDivider"></hr>
             <div className="replyOptions">
-              <button type="button" data-toggle="modal" data-target="#exampleModal" className="quickReplyButton">Quick Reply</button>
-              <button type="button" data-toggle="modal" data-target="#exampleModal" className="replyButton">Reply</button>
+              <button type="button" data-toggle="" data-target="" className="quickReplyButton">Quick Reply</button>
+              <button type="button" data-toggle="modal" data-target="#replyModal" className="replyButton">Reply</button>
             </div>
           </div>
         </div>
@@ -123,29 +123,32 @@ class GamePage extends Component{
   render() {
     return(
       <div>
-        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        {/*----------------------------------------REPLY MODAL--------------------------------------------------------- */}
+        <div class="modal fade" id="replyModal" tabindex="-1" aria-labelledby="replyModalLabel" aria-hidden="true">
           <div class="modal-dialog">
-            <div class="modal-content">
+            <div class="modal-content" style={{backgroundColor: "#262525"}}>
               <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
+                <h5 class="modal-title" id="replyModalLabel" style={{marginLeft: "167px", color: "white"}}>Write a Reply</h5>
               </div>
-              <div class="modal-body">
-                ...
+              <div class="modal-body" style={{color: "white"}}>
+                <textarea className="form-control" aria-label="ReplyBox" placeholder="Write a reply..."></textarea>
+                This is the modal for a reply. The quick reply button should probably open another seperate modal since it
+                will be prefilled with text. I can use an onClick event with the close button to reset the state to null
+                assuming I use the state to keep track of what was written in the textarea like I did for a post.
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+                <button type="button" class="btn closeModalButton" data-dismiss="modal">Close</button>
+                <button type="button" class="btn postReplyButton">Post Reply</button>
               </div>
             </div>
           </div>
         </div>
+        {/*----------------------------------------REPLY MODAL END--------------------------------------------------------- */}
         <div className="background">
           <NavBar />
           <div className="page">
             <div className="pageGrid">
+              {/*----------------------------------------LEFT COLUMN--------------------------------------------------------- */}
               <div className="leftColumn">
                 <div style={{height: '100px', width: '475px', backgroundImage: `url(${require(`./style-sheets/pics/GamePageHeadPics/${this.state.game.gameHeadPicUrl}`)})`, borderRadius: '15px', position: "fixed"}}>
                   <div className="gameTitle">{this.state.game.name}</div>
@@ -160,7 +163,10 @@ class GamePage extends Component{
                   <p style={{color: 'white', marginLeft: '10px'}}>Popular Posters</p>
                 </div>
               </div>
+              {/*----------------------------------------LEFT COLUMN END--------------------------------------------------------- */}
+              {/*----------------------------------------MIDDLE COLUMN--------------------------------------------------------- */}
               <div className="middleColumn">
+                {/*----------------------------------------CREATE POST--------------------------------------------------------- */}
                   <div style={{display: this.props.auth.isAuthenticated ? 'block' : 'none'}}>
                     <div className="createPost">
                       <div className="postHeader">
@@ -204,11 +210,15 @@ class GamePage extends Component{
                       </div>
                     </div>
                   </div>
+                  {/*----------------------------------------CREATE POST END--------------------------------------------------------- */}
+                  {/*----------------------------------------FEED--------------------------------------------------------- */}
                 <div className="feed">
                   {this.createPosts()}
                   <p style={{color: "#615f5e", marginLeft: "200px", marginTop: "10px"}}>End of feed</p>
                 </div>
+                {/*----------------------------------------FEED--------------------------------------------------------- */}
               </div>
+              {/*----------------------------------------MIDDLE COLUMN END--------------------------------------------------------- */}
               <div className="rightColumn"></div>
             </div>
           </div>
