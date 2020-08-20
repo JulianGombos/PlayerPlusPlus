@@ -11,11 +11,16 @@ const Post = props => (
       <LazyLoad onContentVisible={() => console.log('lazyloaded!')}>
         <div className="post">
           <div className="postHeader">
-            <div className="headerCircle"></div>
+            <div className="headerCircle">
+              <div style={{height: '50px', width: '50px', backgroundImage: `url(${require(`./style-sheets/pics/profilePic.png`)})`}}></div>
+            </div>
             <div className="posterName">
               {props.post.name}
               <br></br>
               <div className="postDate">{props.post.date.split("T")[0]}</div>
+            </div>
+            <div className="platformIcon" style={{display: props.post.platform == "noPlatform" ? "none" : "block"}}>
+              <div style={{height: "25px", width: "25px", backgroundImage: props.post.platform == "noPlatform" ? "url()" : `url(${require(`./style-sheets/pics/PlatformPics/${props.post.platform}.png`)})`}}></div>
             </div>
           </div>
           <div className="contentBox">
@@ -50,7 +55,8 @@ class GamePage extends Component{
     const newPost = {
       name: this.props.auth.user.name,
       message: this.state.postContent,
-      game: this.state.game._id
+      game: this.state.game._id,
+      platform: this.state.platform
     };
 
     axios.post('/posts/post', newPost)
@@ -81,12 +87,14 @@ class GamePage extends Component{
     var game = JSON.parse(localStorage.getItem('Game')) || [];
     var posts = JSON.parse(localStorage.getItem('Posts')) || [];
     var postContent = "";
+    var platform = "noPlatform";
     var id = localStorage.getItem('Id') || this.props.location.id;
 
     return {
       game: game,
       posts: posts,
       postContent: postContent,
+      platform: platform,
       id: id,
     };
   }
@@ -131,7 +139,9 @@ class GamePage extends Component{
                 <div style={{display: this.props.auth.isAuthenticated ? 'block' : 'none'}}>
                   <div className="createPost">
                     <div className="postHeader">
-                      <div className="headerCircle"></div>
+                      <div className="headerCircle">
+                        <div style={{height: '50px', width: '50px', backgroundImage: `url(${require(`./style-sheets/pics/profilePic.png`)})`}}></div>
+                      </div>
                       <div className="createPostName">
                         {this.props.auth.user.name}
                       </div>
@@ -150,8 +160,20 @@ class GamePage extends Component{
                             />
                           </div>
                         </div>
-                        <div style={{ paddingLeft: "10px", paddingBottom: "10px", marginTop: "-5px"}}>
-                          <button className="btn submitPostButton" type="submit">Submit Post</button>
+                        <div style={{paddingBottom: "10px"}}>
+                          <div style={{ paddingLeft: "10px", marginTop: "-5px", display: "inline"}}>
+                            <button className="btn submitPostButton" type="submit">Submit Post</button>
+                          </div>
+                          <div style={{display: "inline", marginLeft: "120px"}}>
+                            <label for="platform" style={{color: "white"}}>Choose a platform: </label>
+                            <select id="platform" value={this.state.platform} onChange={this.onChange}>
+                              <option value="noPlatform">No platform</option>
+                              <option value="xbox">Xbox</option>
+                              <option value="playstation">Playstation</option>
+                              <option value="pc">PC</option>
+                              <option value="steam">Steam</option>
+                            </select> 
+                          </div>
                         </div>
                       </form>
                     </div>

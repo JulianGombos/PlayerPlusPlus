@@ -16,6 +16,10 @@ const GamePagePostSchema = new Schema({
     type: String,
     required: true
   },
+  platform: {
+    type: String,
+    required: true
+  },
   date: {
     type: Date,
     default: Date.now

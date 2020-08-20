@@ -17,11 +17,6 @@
 .square {
   height: 230px;
   width: 230px;
-  border-radius: 15px;
-}
-
-.square link:hover {
-  color: rgba(127, 21, 232, 0.5);
 }
 
 .gameTileGrid {

@@ -116,7 +116,7 @@
 
 .postHeader {
   display: grid;
-  grid-template-columns: 60px 100%;
+  grid-template-columns: 60px 30% 70%;
   background-color: #292828;
   height: 70px;
   align-content: center;
@@ -124,19 +124,19 @@
   border-top-right-radius: 10px;
 }
 
-/* .posterName {
-  font-size: 18px;
-  color: white;
-  margin-left: 10px;
-  font-weight: bold;
-} */
-
 .posterName {
   font-size: 18px;
   color: white;
   margin-left: -25px;
   font-weight: bold;
 } 
+
+.platformIcon {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  margin-left: 250px;
+}
 
 .postDate {
   font-size: 13px;
@@ -162,7 +162,6 @@
 .headerCircle {
   width: 50px;
   height: 50px;
-  background: white;
   border-radius: 50%;
   margin-left: -25px;
 }

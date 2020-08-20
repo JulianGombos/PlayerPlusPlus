@@ -11,8 +11,9 @@ router.route('/post').post((req, res) => {
   const name = req.body.name;
   const message = req.body.message;
   const game = req.body.game;
+  const platform = req.body.platform;
 
-  const newPost = new GamePagePost({name, message, game});
+  const newPost = new GamePagePost({name, message, game, platform});
 
   newPost.save()
     .then(() => res.json('Post added!'))
