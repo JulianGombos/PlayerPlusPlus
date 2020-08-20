@@ -25,6 +25,11 @@ const Post = props => (
           </div>
           <div className="contentBox">
             <div className="contentText">{props.post.message}</div>
+            <hr className="replyOptionsDivider"></hr>
+            <div className="replyOptions">
+              <button type="button" data-toggle="modal" data-target="#exampleModal" className="quickReplyButton">Quick Reply</button>
+              <button type="button" data-toggle="modal" data-target="#exampleModal" className="replyButton">Reply</button>
+            </div>
           </div>
         </div>
       </LazyLoad>
@@ -49,7 +54,7 @@ class GamePage extends Component{
       });
   }
 
-  onSubmit = e => {
+  onSubmitPost = e => {
     e.preventDefault();
 
     const newPost = {
@@ -117,73 +122,95 @@ class GamePage extends Component{
 
   render() {
     return(
-      <div className="background">
-        <NavBar />
-        <div className="page">
-          <div className="pageGrid">
-            <div className="leftColumn">
-              <div style={{height: '100px', width: '475px', backgroundImage: `url(${require(`./style-sheets/pics/GamePageHeadPics/${this.state.game.gameHeadPicUrl}`)})`, borderRadius: '15px', position: "fixed"}}>
-                <div className="gameTitle">{this.state.game.name}</div>
+      <div>
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
               </div>
-              <div>
-                <button type="button" className="btn btn-lg followButton">Follow This Game</button>
+              <div class="modal-body">
+                ...
               </div>
-              <div className="popularPosts">
-                <p style={{color: 'white', marginLeft: '10px'}}>Popular Posts</p>
-              </div>
-              <div className="popularPosters">
-                <p style={{color: 'white', marginLeft: '10px'}}>Popular Posters</p>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
               </div>
             </div>
-            <div className="middleColumn">
-                <div style={{display: this.props.auth.isAuthenticated ? 'block' : 'none'}}>
-                  <div className="createPost">
-                    <div className="postHeader">
-                      <div className="headerCircle">
-                        <div style={{height: '50px', width: '50px', backgroundImage: `url(${require(`./style-sheets/pics/profilePic.png`)})`}}></div>
-                      </div>
-                      <div className="createPostName">
-                        {this.props.auth.user.name}
-                      </div>
-                    </div>
-                    <div className="contentBox">
-                      <form noValidate onSubmit={this.onSubmit}>
-                        <div className="postBar">
-                          <div className="form-group">
-                            <input
-                              onChange={this.onChange}
-                              value={this.state.postContent}
-                              id="postContent"
-                              style={{color: "black"}}
-                              placeholder="Create a Post Here"
-                              className="form-control"
-                            />
-                          </div>
+          </div>
+        </div>
+        <div className="background">
+          <NavBar />
+          <div className="page">
+            <div className="pageGrid">
+              <div className="leftColumn">
+                <div style={{height: '100px', width: '475px', backgroundImage: `url(${require(`./style-sheets/pics/GamePageHeadPics/${this.state.game.gameHeadPicUrl}`)})`, borderRadius: '15px', position: "fixed"}}>
+                  <div className="gameTitle">{this.state.game.name}</div>
+                </div>
+                <div>
+                  <button type="button" className="btn btn-lg followButton">Follow This Game</button>
+                </div>
+                <div className="popularPosts">
+                  <p style={{color: 'white', marginLeft: '10px'}}>Popular Posts</p>
+                </div>
+                <div className="popularPosters">
+                  <p style={{color: 'white', marginLeft: '10px'}}>Popular Posters</p>
+                </div>
+              </div>
+              <div className="middleColumn">
+                  <div style={{display: this.props.auth.isAuthenticated ? 'block' : 'none'}}>
+                    <div className="createPost">
+                      <div className="postHeader">
+                        <div className="headerCircle">
+                          <div style={{height: '50px', width: '50px', backgroundImage: `url(${require(`./style-sheets/pics/profilePic.png`)})`}}></div>
                         </div>
-                        <div style={{paddingBottom: "10px"}}>
-                          <div style={{ paddingLeft: "10px", marginTop: "-5px", display: "inline"}}>
-                            <button className="btn submitPostButton" type="submit">Submit Post</button>
-                          </div>
-                          <div style={{display: "inline", marginLeft: "120px"}}>
-                            <label for="platform" style={{color: "white"}}>Choose a platform: </label>
-                            <select id="platform" value={this.state.platform} onChange={this.onChange}>
-                              <option value="noPlatform">No platform</option>
-                              <option value="xbox">Xbox</option>
-                              <option value="playstation">Playstation</option>
-                              <option value="pc">PC</option>
-                              <option value="steam">Steam</option>
-                            </select> 
-                          </div>
+                        <div className="createPostName">
+                          {this.props.auth.user.name}
                         </div>
-                      </form>
+                      </div>
+                      <div className="contentBox">
+                        <form noValidate onSubmit={this.onSubmitPost}>
+                          <div className="postBar">
+                            <div className="form-group">
+                              <input
+                                onChange={this.onChange}
+                                value={this.state.postContent}
+                                id="postContent"
+                                style={{color: "black"}}
+                                placeholder="Create a Post Here"
+                                className="form-control"
+                              />
+                            </div>
+                          </div>
+                          <div style={{paddingBottom: "10px"}}>
+                            <div style={{ paddingLeft: "10px", marginTop: "-5px", display: "inline"}}>
+                              <button className="btn submitPostButton" type="submit">Submit Post</button>
+                            </div>
+                            <div style={{display: "inline", marginLeft: "120px"}}>
+                              <label for="platform" style={{color: "white"}}>Choose a platform: </label>
+                              <select id="platform" value={this.state.platform} onChange={this.onChange}>
+                                <option value="noPlatform">No platform</option>
+                                <option value="xbox">Xbox</option>
+                                <option value="playstation">Playstation</option>
+                                <option value="pc">PC</option>
+                                <option value="steam">Steam</option>
+                              </select> 
+                            </div>
+                          </div>
+                        </form>
+                      </div>
                     </div>
                   </div>
+                <div className="feed">
+                  {this.createPosts()}
+                  <p style={{color: "#615f5e", marginLeft: "200px", marginTop: "10px"}}>End of feed</p>
                 </div>
-              <div className="feed">
-                {this.createPosts()}
               </div>
+              <div className="rightColumn"></div>
             </div>
-            <div className="rightColumn"></div>
           </div>
         </div>
       </div>
