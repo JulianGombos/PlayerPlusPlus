@@ -22,9 +22,14 @@ router.route('/post').post((req, res) => {
 
 router.route('/:game').get((req, res) => {
   GamePagePost.find({game: req.params.game})
-    .then(post => res.json(post))
+    .then(game => res.json(game))
     .catch(err => res.status(400).json('Error: ' + err));
 });
 
+router.route('/getpost/:id').get((req, res) => {
+  GamePagePost.findById(req.params.id)
+    .then(post => res.json(post))
+    .catch(err => res.status(400).json('Error: ' + err));
+});
 
 module.exports = router;

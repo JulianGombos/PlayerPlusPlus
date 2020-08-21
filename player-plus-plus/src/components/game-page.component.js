@@ -5,6 +5,7 @@ import NavBar from "./navbar.component";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import LazyLoad from 'react-lazy-load';
+import { Link } from 'react-router-dom';
 
 const Post = props => (
     <div>
@@ -25,6 +26,10 @@ const Post = props => (
           </div>
           <div className="contentBox">
             <div className="contentText">{props.post.message}</div>
+            <div className="replyInfo">
+              <p style={{fontSize: "14px", color: "#c9c4c2", display: "inline-block", marginLeft: "10px"}}>35 Replies</p>
+              <Link to={{pathname: "/game/viewpost", id: props.post._id}}><p className="viewReplies">View Replies</p></Link>
+            </div>
             <hr className="replyOptionsDivider"></hr>
             <div className="replyOptions">
               <button type="button" data-toggle="" data-target="" className="quickReplyButton">Quick Reply</button>
@@ -77,7 +82,7 @@ class GamePage extends Component{
     this.setState({ [e.target.id]: e.target.value });
   };
 
-  getPosts(gameId){
+  getPosts(){
     axios.get('/posts/' + this.state.game._id)
       .then(res => {
         this.setSavedPosts(res.data.reverse());

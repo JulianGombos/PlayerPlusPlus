@@ -7,8 +7,6 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
 const GameName = props => (
-  
-  
     <div className="square">
       <Link to={{pathname:'/game', id: props.game._id}}>
         <div style={{height: '230px', width: '230px', backgroundImage: `url(${require(`./style-sheets/pics/TilePics/${props.game.picUrl}`)})`, borderRadius: '15px'}}></div>
