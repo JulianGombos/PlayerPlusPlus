@@ -23,6 +23,7 @@ const Post = props => (
       </div>
       <div className="postContentBox">
         <div className="postContentText">{props.post.message}</div>
+        <p style={{fontSize: "14px", color: "#c9c4c2", marginLeft: "10px",marginBottom: "-8px", paddingTop: "10px"}}>{props.replyCount} Replies</p>
         <hr className="postReplyOptionsDivider"></hr>
         <div className="replyOptions">
           <button type="button" data-toggle="" data-target="" className="postQuickReplyButton">Quick Reply</button>
@@ -66,10 +67,10 @@ class PostPage extends Component {
     window.scrollTo(0,0);
     axios.get('/posts/getpost/' + this.props.location.id)
       .then(res => {
-        var postComp = <Post post={res.data} key={res.data._id} />
-        this.setState({postComp: postComp});
         this.setPostInfo(res.data);
         this.getReplies(res.data._id);
+        var postComp = <Post post={res.data} replyCount={this.state.replies.length} key={res.data._id} />
+        this.setState({postComp: postComp});
       })
       .catch((error) => {
         console.log(error);
@@ -94,7 +95,7 @@ class PostPage extends Component {
       .then(res => {
         this.getReplies(this.state.postInfo._id);
       });
-      
+
     this.setState({replyContent: ""});
   };
 
@@ -136,11 +137,7 @@ class PostPage extends Component {
     var postInfo = JSON.parse(localStorage.getItem('PostInfo')) || [];
     var replies = JSON.parse(localStorage.getItem('Replies')) || [];
     var replyContent = "";
-    var postComp = <Post post={postInfo} key={postInfo._id} />
-    /* var postComp = [];
-    var postInfo = [];
-    var replies = [];
-    var replyContent = ""; */
+    var postComp = <Post post={postInfo} replyCount={replies.length} key={postInfo._id} />
 
     return {
       postComp: postComp,
