@@ -28,12 +28,10 @@ const Post = props => (
             <div className="contentText">{props.post.message}</div>
             <div className="replyInfo">
               <p style={{fontSize: "14px", color: "#c9c4c2", display: "inline-block", marginLeft: "10px"}}>35 Replies</p>
-              <Link to={{pathname: "/game/viewpost", id: props.post._id}}><p className="viewReplies">View Replies</p></Link>
             </div>
             <hr className="replyOptionsDivider"></hr>
             <div className="replyOptions">
-              <button type="button" data-toggle="" data-target="" className="quickReplyButton">Quick Reply</button>
-              <button type="button" data-toggle="modal" data-target="#replyModal" className="replyButton">Reply</button>
+              <Link to={{pathname: "/game/viewpost", id: props.post._id}}><p className="viewReplies">View Replies</p></Link>
             </div>
           </div>
         </div>
@@ -49,6 +47,7 @@ class GamePage extends Component{
   }
 
   componentDidMount() {
+    window.scrollTo(0,0);
     axios.get('/games/' + this.props.location.id)
       .then(res => {
         this.setSavedGame(res.data);
@@ -99,6 +98,7 @@ class GamePage extends Component{
     var postContent = "";
     var platform = "noPlatform";
     var id = localStorage.getItem('Id') || this.props.location.id;
+    var focusPost = [];
 
     return {
       game: game,
@@ -106,6 +106,7 @@ class GamePage extends Component{
       postContent: postContent,
       platform: platform,
       id: id,
+      focusPost: focusPost
     };
   }
 
@@ -119,6 +120,10 @@ class GamePage extends Component{
     this.setState({posts: posts});
   }
 
+  setFocusPost(post){
+
+  }
+
   createPosts(){
     return this.state.posts.map(currentPost =>{
       return <Post post={currentPost} key={currentPost._id} />
@@ -129,25 +134,6 @@ class GamePage extends Component{
     return(
       <div>
         {/*----------------------------------------REPLY MODAL--------------------------------------------------------- */}
-        <div class="modal fade" id="replyModal" tabindex="-1" aria-labelledby="replyModalLabel" aria-hidden="true">
-          <div class="modal-dialog">
-            <div class="modal-content" style={{backgroundColor: "#262525"}}>
-              <div class="modal-header">
-                <h5 class="modal-title" id="replyModalLabel" style={{marginLeft: "167px", color: "white"}}>Write a Reply</h5>
-              </div>
-              <div class="modal-body" style={{color: "white"}}>
-                <textarea className="form-control" aria-label="ReplyBox" placeholder="Write a reply..."></textarea>
-                This is the modal for a reply. The quick reply button should probably open another seperate modal since it
-                will be prefilled with text. I can use an onClick event with the close button to reset the state to null
-                assuming I use the state to keep track of what was written in the textarea like I did for a post.
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn closeModalButton" data-dismiss="modal">Close</button>
-                <button type="button" class="btn postReplyButton">Post Reply</button>
-              </div>
-            </div>
-          </div>
-        </div>
         {/*----------------------------------------REPLY MODAL END--------------------------------------------------------- */}
         <div className="background">
           <NavBar />
