@@ -44,18 +44,28 @@ class GamePage extends Component{
     super(props);
 
     this.state = this.getInitialState();
+    console.log(this.state);
   }
 
   componentDidMount() {
+    console.log("In componentDidMount");
     window.scrollTo(0,0);
-    axios.get('/games/' + this.props.location.id)
+    var gameId = this.props.location.id == undefined ? this.state.id : this.props.location.id;
+    console.log("Game id: " + gameId);
+    axios.get('/games/' + gameId)
       .then(res => {
+        this.setGameId(gameId);
         this.setSavedGame(res.data);
         this.getPosts(this.state.game._id);
       })
       .catch((error) => {
         console.log(error);
       });
+  }
+
+  setGameId(gameId){
+    localStorage.setItem('GameId', gameId);
+    this.setState({id: gameId});
   }
 
   onSubmitPost = e => {
@@ -93,20 +103,24 @@ class GamePage extends Component{
   }
 
   getInitialState() {
-    var game = JSON.parse(localStorage.getItem('Game')) || [];
+    
+    /* var game = JSON.parse(localStorage.getItem('Game')) || [];
     var posts = JSON.parse(localStorage.getItem('Posts')) || [];
     var postContent = "";
     var platform = "noPlatform";
     var id = localStorage.getItem('Id') || this.props.location.id;
-    var focusPost = [];
+    var focusPost = []; */
+    var game = JSON.parse(localStorage.getItem('Game')) || [];
+    var id = localStorage.getItem('GameId') || [];
+    console.log("In getInitialState: " + id);
 
     return {
       game: game,
-      posts: posts,
-      postContent: postContent,
-      platform: platform,
+      posts: [],
+      postContent: '',
+      platform: "noPlatform",
       id: id,
-      focusPost: focusPost
+      focusPost: []
     };
   }
 
@@ -141,6 +155,7 @@ class GamePage extends Component{
             <div className="pageGrid">
               {/*----------------------------------------LEFT COLUMN--------------------------------------------------------- */}
               <div className="leftColumn">
+                {console.log(this.state.game)}
                 <div style={{height: '100px', width: '475px', backgroundImage: `url(${require(`./style-sheets/pics/GamePageHeadPics/${this.state.game.gameHeadPicUrl}`)})`, borderRadius: '15px', position: "fixed"}}>
                   <div className="gameTitle">{this.state.game.name}</div>
                 </div>

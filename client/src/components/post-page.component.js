@@ -94,11 +94,6 @@ class PostPage extends Component {
       });
   }
 
-  setPostId(postId) {
-    localStorage.setItem('PostId', postId);
-    this.setState({postId: postId});
-  }
-
   onChange = e => {
     this.setState({ [e.target.id]: e.target.value });
   };
@@ -153,6 +148,11 @@ class PostPage extends Component {
     this.setState({replies: replies});
   }
 
+  setPostId(postId) {
+    localStorage.setItem('PostId', postId);
+    this.setState({postId: postId});
+  }
+
   createReplies(){
     return this.state.replies.map(currentReply =>{
       return <Reply reply={currentReply} loggedInUser={this.props.auth.user.name} key={currentReply._id} />
@@ -165,7 +165,6 @@ class PostPage extends Component {
     var replyContent = "";
     var postComp = <Post post={postInfo} replyCount={replies.length} key={postInfo._id} /> */
     var postId = localStorage.getItem('PostId') || [];
-    console.log("In getInitialState: " + postId);
 
     return {
       postComp: '',
