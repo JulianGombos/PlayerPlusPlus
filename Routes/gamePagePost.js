@@ -32,4 +32,20 @@ router.route('/getpost/:id').get((req, res) => {
     .catch(err => res.status(400).json('Error: ' + err));
 });
 
+router.route('/update/:id').post((req, res) => {
+  GamePagePost.findById(req.params.id)
+    .then(post => {
+      post.name = req.body.name;
+      post.message = req.body.message;
+      post.replyCount = Number(req.body.replyCount);
+      post.game = req.body.game;
+      post.platform = req.body.platform;
+
+      post.save()
+        .then(() => res.json('Post updated!'))
+        .catch(err => res.status(400).json('Error: ' + err));
+    })
+    .catch(err => res.status(400).json('Error: ' + err));
+});
+
 module.exports = router;

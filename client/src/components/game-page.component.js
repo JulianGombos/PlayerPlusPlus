@@ -27,7 +27,7 @@ const Post = props => (
           <div className="contentBox">
             <div className="contentText">{props.post.message}</div>
             <div className="replyInfo">
-              <p style={{fontSize: "14px", color: "#c9c4c2", display: "inline-block", marginLeft: "10px"}}>35 Replies</p>
+              <p style={{fontSize: "14px", color: "#c9c4c2", display: "inline-block", marginLeft: "10px"}}>{props.post.replyCount} Replies</p>
             </div>
             <hr className="replyOptionsDivider"></hr>
             <div className="replyOptions">

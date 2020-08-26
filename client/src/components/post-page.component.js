@@ -23,7 +23,7 @@ const Post = props => (
       </div>
       <div className="postContentBox">
         <div className="postContentText">{props.post.message}</div>
-        <p style={{fontSize: "14px", color: "#c9c4c2", marginLeft: "10px",marginBottom: "-8px", paddingTop: "10px"}}>{props.replyCount} Replies</p>
+        <p style={{fontSize: "14px", color: "#c9c4c2", marginLeft: "10px",marginBottom: "-8px", paddingTop: "10px"}}>{props.post.replyCount} Replies</p>
         <hr className="postReplyOptionsDivider"></hr>
         <div className="replyOptions">
           <button type="button" data-toggle="" data-target="" className="postQuickReplyButton">Quick Reply</button>
@@ -56,8 +56,26 @@ const Reply = props => (
                 <button className="deleteReply dropdown-item"
                   onClick={() => {
                     axios.delete('/replies/delete/' + props.reply._id)
-                    .then(window.location.reload(true));
-                  }} style={{display: props.reply.name == props.loggedInUser ? 'block' : 'none'}}>Delete Reply</button>
+                      .then();
+
+                    const updatedPost = {
+                      name: props.postInfo.name,
+                      message: props.postInfo.message,
+                      game: props.postInfo.game,
+                      replyCount: Number(props.postInfo.replyCount) - 1,
+                      platform: props.postInfo.platform
+                    }
+  
+                    axios.post('/posts/update/' + props.postInfo._id, updatedPost)
+                      .then(res => {
+                        console.log("Post updated");
+                        window.location.reload(true);
+                      })
+                      .catch((error) => {
+                        console.log(error);
+                      });
+                  }}
+                  style={{display: props.reply.name == props.loggedInUser ? 'block' : 'none'}}>Delete Reply</button>
                 <div className="noOptions" style={{display: props.reply.name == props.loggedInUser ? 'none' : 'block'}}>No Options</div>
               </div>
             </div>
@@ -86,7 +104,7 @@ class PostPage extends Component {
         this.setPostId(id);
         this.setPostInfo(res.data);
         this.getReplies(res.data._id);
-        var postComp = <Post post={res.data} replyCount={this.state.replies.length} key={res.data._id} />
+        var postComp = <Post post={res.data} key={res.data._id} />
         this.setState({postComp: postComp});
       })
       .catch((error) => {
@@ -111,6 +129,22 @@ class PostPage extends Component {
     axios.post('/replies/reply', newReply)
       .then(res => {
         this.getReplies(this.state.postInfo._id);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+
+    const updatedPost = {
+      name: this.state.postInfo.name,
+      message: this.state.postInfo.message,
+      game: this.state.postInfo.game,
+      replyCount: Number(this.state.postInfo.replyCount) + 1,
+      platform: this.state.postInfo.platform
+    }
+
+    axios.post('/posts/update/' + this.state.postInfo._id, updatedPost)
+      .then(res => {
+        console.log("Post updated");
       })
       .catch((error) => {
         console.log(error);
@@ -155,7 +189,7 @@ class PostPage extends Component {
 
   createReplies(){
     return this.state.replies.map(currentReply =>{
-      return <Reply reply={currentReply} loggedInUser={this.props.auth.user.name} key={currentReply._id} />
+      return <Reply reply={currentReply} loggedInUser={this.props.auth.user.name} postInfo={this.state.postInfo} key={currentReply._id} />
     })
   }
 

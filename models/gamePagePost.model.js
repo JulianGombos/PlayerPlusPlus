@@ -20,6 +20,11 @@ const GamePagePostSchema = new Schema({
     type: String,
     required: true
   },
+  replyCount: {
+    type: Number,
+    default: 0,
+    required: true
+  },
   date: {
     type: Date,
     default: Date.now
