@@ -25,7 +25,7 @@ const Post = props => (
         <div className="postContentText">{props.post.message}</div>
         <p style={{fontSize: "14px", color: "#c9c4c2", marginLeft: "10px",marginBottom: "-8px", paddingTop: "10px"}}>{props.post.replyCount} Replies</p>
         <hr className="postReplyOptionsDivider"></hr>
-        <div className="replyOptions">
+        <div className="postReplyOptions">
           <button type="button" data-toggle="" data-target="" className="postQuickReplyButton">Quick Reply</button>
           <button type="button" data-toggle="modal" data-target="#replyModal" className="replyButton">Reply</button>
         </div>
