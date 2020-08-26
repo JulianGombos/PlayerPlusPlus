@@ -47,6 +47,21 @@ const Reply = props => (
             <br></br>
             <div className="replyDate">{props.reply.date.split("T")[0]}</div>
           </div>
+          <div className="dropdown">
+            <button className="dropdown-toggle optionsButton" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              ...
+            </button>
+            <div className="dropdown-menu dropdown-menu-right optionsDropdown" aria-labelledby="dropdownMenuButton">
+              <div>
+                <button className="deleteReply dropdown-item"
+                  onClick={() => {
+                    axios.delete('/replies/delete/' + props.reply._id)
+                    .then(window.location.reload(true));
+                  }} style={{display: props.reply.name == props.loggedInUser ? 'block' : 'none'}}>Delete Reply</button>
+                <div className="noOptions" style={{display: props.reply.name == props.loggedInUser ? 'none' : 'block'}}>No Options</div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
       <div className="replyContentBox">
@@ -65,8 +80,10 @@ class PostPage extends Component {
 
   componentDidMount(){
     window.scrollTo(0,0);
-    axios.get('/posts/getpost/' + this.props.location.id)
+    var id = this.props.location.id == undefined ? this.state.postId : this.props.location.id;
+    axios.get('/posts/getpost/' + id)
       .then(res => {
+        this.setPostId(id);
         this.setPostInfo(res.data);
         this.getReplies(res.data._id);
         var postComp = <Post post={res.data} replyCount={this.state.replies.length} key={res.data._id} />
@@ -75,6 +92,11 @@ class PostPage extends Component {
       .catch((error) => {
         console.log(error);
       });
+  }
+
+  setPostId(postId) {
+    localStorage.setItem('PostId', postId);
+    this.setState({postId: postId});
   }
 
   onChange = e => {
@@ -94,9 +116,13 @@ class PostPage extends Component {
     axios.post('/replies/reply', newReply)
       .then(res => {
         this.getReplies(this.state.postInfo._id);
+      })
+      .catch((error) => {
+        console.log(error);
       });
 
     this.setState({replyContent: ""});
+    window.location.reload(true);
   };
 
   getReplies(postId){
@@ -129,28 +155,31 @@ class PostPage extends Component {
 
   createReplies(){
     return this.state.replies.map(currentReply =>{
-      return <Reply reply={currentReply} key={currentReply._id} />
+      return <Reply reply={currentReply} loggedInUser={this.props.auth.user.name} key={currentReply._id} />
     })
   }
 
   getInitialState() {
-    var postInfo = JSON.parse(localStorage.getItem('PostInfo')) || [];
+    /* var postInfo = JSON.parse(localStorage.getItem('PostInfo')) || [];
     var replies = JSON.parse(localStorage.getItem('Replies')) || [];
     var replyContent = "";
-    var postComp = <Post post={postInfo} replyCount={replies.length} key={postInfo._id} />
+    var postComp = <Post post={postInfo} replyCount={replies.length} key={postInfo._id} /> */
+    var postId = localStorage.getItem('PostId') || [];
+    console.log("In getInitialState: " + postId);
 
     return {
-      postComp: postComp,
-      postInfo: postInfo,
-      replies: replies,
-      replyContent: replyContent
+      postComp: '',
+      postInfo: '',
+      replies: [],
+      replyContent: '',
+      postId: postId
     };
   }
  
   render(){
     return(
       <div>
-        <div className="modal fade" id="replyModal" tabindex="-1" aria-labelledby="replyModalLabel" aria-hidden="true">
+        <div className="modal fade" id="replyModal" tabIndex="-1" aria-labelledby="replyModalLabel" aria-hidden="true">
           <div className="modal-dialog">
             <form noValidate onSubmit={this.onSubmitReply}>
             <div className="modal-content" style={{backgroundColor: "#262525"}}>

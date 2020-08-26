@@ -3,6 +3,18 @@
   src: url("./fonts/suezone.ttf");
 }
 
+button:focus {
+  outline: none;
+}
+
+button::-moz-focus-inner {
+  border: 0;
+}
+
+.dropdown-toggle::after {
+  content: none;
+}
+
 .page {
   position: absolute;
   top: 110px;
@@ -175,6 +187,39 @@ hr.postReplyOptionsDivider2 {
   background-color: white;
   border-radius: 50%;
   margin-left: -25px;
+}
+
+.optionsButton {
+  background-color: #302f2e;
+  border: none;
+  color: white;
+  margin-left: 350px;
+  font-size: 30px;
+  letter-spacing: 1.5px;
+  margin-top: -20px;
+}
+
+.optionsDropdown button:hover {
+  background-color: #b30600;
+  color: white;
+  transition: background-color 0.6s;
+}
+
+.optionsDropdown {
+  background-color: #615f5e;
+}
+
+.deleteReply {
+  background-color: #615f5e;
+  color: white;
+  width: 90%;
+  margin-left: 8px;
+  border-radius: 3px;
+}
+
+.noOptions {
+  color: white;
+  margin-left: 35px;
 }
 
 .replyFooter {
