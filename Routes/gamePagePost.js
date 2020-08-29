@@ -48,4 +48,10 @@ router.route('/update/:id').post((req, res) => {
     .catch(err => res.status(400).json('Error: ' + err));
 });
 
+router.route('/delete/:id').delete((req, res) => {
+  GamePagePost.findByIdAndDelete(req.params.id)
+    .then(() => res.json('Post deleted.'))
+    .catch(err => res.status(400).json('Error: ' + err));
+});
+
 module.exports = router;

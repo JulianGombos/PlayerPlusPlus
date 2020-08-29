@@ -32,4 +32,10 @@ router.route('/delete/:id').delete((req, res) => {
     .catch(err => res.status(400).json('Error: ' + err));
 });
 
+router.route('/delete/postDeleted/:post').delete((req, res) => {
+  Reply.deleteMany({postId: req.params.post})
+    .then(() => res.json('Replies deleted.'))
+    .catch(err => res.status(400).json('Error: ' + err));
+});
+
 module.exports = router;
