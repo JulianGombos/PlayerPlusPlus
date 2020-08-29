@@ -20,35 +20,34 @@ const Post = props => (
               <br></br>
               <div className="postDate">{props.post.date.split("T")[0]}</div>
             </div>
-            <div className="topRightHeaderContainer">
-              <div className="platformIcon" style={{display: props.post.platform == "noPlatform" ? "none" : "block"}}>
-                <div style={{height: "25px", width: "25px", backgroundImage: props.post.platform == "noPlatform" ? "url()" : `url(${require(`./style-sheets/pics/PlatformPics/${props.post.platform}.png`)})`}}></div>
-              </div>
-              {/*-------------------------------------------------------------------------------------------------- */}
-              <div className="dropdown postOptionsContainer">
-              <button className="dropdown-toggle postOptionsButton" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                ...
-              </button>
-              <div className="dropdown-menu dropdown-menu-right postOptionsDropdown" aria-labelledby="dropdownMenuButton">
-                <div>
-                  <button className="deletePost dropdown-item"
-                    onClick={() => {
-                      axios.delete('/replies/delete/postDeleted/' + props.post._id)
-                        .then();
-
-                      axios.delete('/posts/delete/' + props.post._id)
-                        .then(res => {
-                          console.log("Post deleted!");
-                          window.location.reload(true);
-                        });
-                    }}
-                    style={{display: props.post.name == props.loggedInUser ? 'block' : 'none'}}>Delete Post</button>
-                  <div className="postNoOptions" style={{display: props.post.name == props.loggedInUser ? 'none' : 'block'}}>No Options</div>
-                </div>
-              </div>
-              </div>
-            {/*-------------------------------------------------------------------------------------------------- */}
+            <div className="platformIcon" style={{display: props.post.platform == "noPlatform" ? "none" : "block"}}>
+              <div style={{height: "25px", width: "25px", backgroundImage: props.post.platform == "noPlatform" ? "url()" : `url(${require(`./style-sheets/pics/PlatformPics/${props.post.platform}.png`)})`}}></div>
             </div>
+            {/*-------------------------------------------------------------------------------------------------- */}
+            <div className="dropdown postOptionsContainer">
+            <button className="dropdown-toggle postOptionsButton" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              ...
+            </button>
+            <div className="dropdown-menu dropdown-menu-right postOptionsDropdown" aria-labelledby="dropdownMenuButton">
+              <div>
+                <button className="deletePost dropdown-item"
+                  onClick={() => {
+                    axios.delete('/replies/delete/postDeleted/' + props.post._id)
+                      .then();
+
+                    axios.delete('/posts/delete/' + props.post._id)
+                      .then(res => {
+                        console.log("Post deleted!");
+                        window.location.reload(true);
+                      });
+                  }}
+                  style={{display: props.post.name == props.loggedInUser ? 'block' : 'none'}}>Delete Post</button>
+                <div className="postNoOptions" style={{display: props.post.name == props.loggedInUser ? 'none' : 'block'}}>No Options</div>
+              </div>
+            </div>
+            </div>
+            {/*-------------------------------------------------------------------------------------------------- */}
+            
           </div>
           <div className="contentBox">
             <div className="contentText">{props.post.message}</div>
